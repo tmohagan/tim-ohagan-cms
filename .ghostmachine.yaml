@@ -1,0 +1,22 @@
+version: "1"
+project_id: "tim-ohagan-cms"
+repo: "https://github.com/tim-ohagan/cms-core"
+
+runtime:
+  language: "python"
+  version: "3.11"
+  package_manager: "poetry"
+
+sandbox:
+  base_image: "python:3.11-slim"
+  install_command: "poetry install --no-root"
+  test_command: "poetry run pytest"
+  repro_test_directory: "tests/incidents/"
+
+guardrails:
+  protected_paths:
+    - "app/core/auth.py"
+    - "alembic/versions/*"
+  max_diff_lines: 80
+  forbidden_ast_nodes:
+    - "ExceptHandler:name=None"
