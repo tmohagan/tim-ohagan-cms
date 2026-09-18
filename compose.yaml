@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: cms-app
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://cms_user:cms_password@cms-postgres:5432/cms_db
+      - REDIS_URL=redis://cms-redis:6379/0
+    networks:
+      - ghostmachine-bridge
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: cms-postgres
+    environment:
+      POSTGRES_USER: cms_user
+      POSTGRES_PASSWORD: cms_password
+      POSTGRES_DB: cms_db
+    ports:
+      - "5432:5432"
+    networks:
+      - ghostmachine-bridge
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  redis:
+    image: redis:7-alpine
+    container_name: cms-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - ghostmachine-bridge
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  ghostmachine-bridge:
+    external: true
