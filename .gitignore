@@ -5,3 +5,4 @@ __pycache__/
 alembic.ini.bak
 /var/log/
 tests/incidents/test_reproduce_*
+.pytest_cache/
