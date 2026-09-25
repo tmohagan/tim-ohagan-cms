@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tim O'Hagan | Software Agentic Engineer</title>
+    <meta name="description" content="Portfolio and CMS of Tim O'Hagan, Software Agentic Engineer specializing in Autonomous SRE.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="ambient-background">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+    
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="brand">Tim<span>OHagan</span></div>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#posts">Posts</a></li>
+                <li><a href="#playground">Chaos Playground</a></li>
+                <li><a href="https://ghostmachine.dev" target="_blank" class="highlight-link">GhostMachine.dev</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="hero" class="hero-section glass-panel">
+            <div class="hero-content">
+                <span class="badge">Open to Opportunities</span>
+                <h1 class="title">Software <span class="gradient-text">Agentic</span> Engineer</h1>
+                <p class="subtitle">
+                    I build autonomous systems that supervise, test, and repair themselves. 
+                    Creator of GhostMachine.dev, merging LLM agentic workflows with Site Reliability Engineering.
+                </p>
+                <div class="cta-group">
+                    <a href="#playground" class="btn primary-btn">
+                        <span class="btn-content">Try the Chaos Playground</span>
+                    </a>
+                    <a href="https://github.com/tmohagan" target="_blank" class="btn secondary-btn">GitHub Profile</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                    <pre><code class="language-python">
+class SRE_Agent(Agent):
+    def __init__(self):
+        self.role = "Autonomous Healer"
+        self.stack = ["LangGraph", "FastAPI", "Docker"]
+        
+    async def monitor_and_repair(self, trace):
+        bug = await self.synthesize_repro(trace)
+        patch = await self.draft_fix(bug)
+        if await self.verify_sandbox(patch):
+            return self.deploy_pr(patch)
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2 class="section-title">Technical <span class="gradient-text">Arsenal</span></h2>
+            <div class="skills-grid">
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">🧠</div>
+                    <h3>Agentic AI</h3>
+                    <p>LangChain, LangGraph, Multi-Agent Orchestration, Tool Calling (MCP), Prompt Engineering</p>
+                </div>
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">⚡</div>
+                    <h3>Backend & APIs</h3>
+                    <p>Python 3.11+, FastAPI, Pydantic, SQLAlchemy 2.0, Asyncpg, RESTful Architecture</p>
+                </div>
+                <div class="skill-card glass-panel">
+                    <div class="skill-icon">🛡️</div>
+                    <h3>SRE & Infrastructure</h3>
+                    <p>Docker, Caddy, OpenTelemetry, Chaos Engineering, Automated CI/CD Pipelines</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="posts" class="posts-section">
+            <h2 class="section-title">Latest <span class="gradient-text">Transmissions</span></h2>
+            <div id="posts-container" class="posts-grid">
+                <!-- Posts will be loaded here dynamically by app.js -->
+            </div>
+        </section>
+
+        <section id="playground" class="playground-section glass-panel highlight-panel">
+            <div class="playground-header">
+                <h2>Interactive <span class="gradient-text">Chaos Playground</span></h2>
+                <p>Trigger live failure vectors against this very site to see GhostMachine.dev capture and remediate the issue in real-time.</p>
+            </div>
+            <div class="playground-controls">
+                <button class="btn danger-btn" onclick="triggerFault('500')">Trigger CPU Fault (500)</button>
+                <button class="btn warning-btn" onclick="triggerFault('422')">Trigger Validation Error (422)</button>
+            </div>
+            <div class="terminal-container">
+                <div class="window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="title">ghostmachine-stream</span>
+                </div>
+                <div id="terminal-output" class="terminal-body">
+                    <div class="log-line info">Waiting for telemetry events...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tim O'Hagan. Built for GhostMachine.dev.</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
