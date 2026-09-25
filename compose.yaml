@@ -3,10 +3,13 @@ version: "3.8"
 services:
   app:
     build: .
+    image: tim-ohagan-cms-app:latest
     container_name: cms-app
+    restart: unless-stopped
     environment:
-      - DATABASE_URL=postgresql+asyncpg://cms_user:cms_password@cms-postgres:5432/cms_db
+      - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-cms_user}:${POSTGRES_PASSWORD:-cms_password}@cms-postgres:5432/${POSTGRES_DB:-cms_db}
       - REDIS_URL=redis://cms-redis:6379/0
+      - GHOSTMACHINE_WEBHOOK_URL=${GHOSTMACHINE_WEBHOOK_URL:-http://ghostmachine.local:8000/api/webhooks}
     networks:
       - ghostmachine-bridge
     depends_on:
@@ -21,10 +24,11 @@ services:
   postgres:
     image: postgres:15-alpine
     container_name: cms-postgres
+    restart: unless-stopped
     environment:
-      POSTGRES_USER: cms_user
-      POSTGRES_PASSWORD: cms_password
-      POSTGRES_DB: cms_db
+      POSTGRES_USER: ${POSTGRES_USER:-cms_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-cms_password}
+      POSTGRES_DB: ${POSTGRES_DB:-cms_db}
     ports:
       - "5432:5432"
     networks:
@@ -38,6 +42,7 @@ services:
   redis:
     image: redis:7-alpine
     container_name: cms-redis
+    restart: unless-stopped
     ports:
       - "6379:6379"
     networks:

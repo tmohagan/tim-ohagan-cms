@@ -1,3 +1,4 @@
+import os
 import json
 import traceback
 import uuid
@@ -10,10 +11,10 @@ from starlette.responses import JSONResponse
 
 async def fire_webhook(payload: dict):
     """Isolated background coroutine to transmit telemetry over TCP."""
+    webhook_url = os.environ.get("GHOSTMACHINE_WEBHOOK_URL", "http://ghostmachine.local:8000/api/webhooks")
     async with httpx.AsyncClient() as client:
         try:
-            # ghostmachine-bridge resolves this alias to the control plane
-            await client.post("http://ghostmachine.local:8000/api/webhooks", json=payload, timeout=2.0)
+            await client.post(webhook_url, json=payload, timeout=2.0)
         except Exception:
             pass # Silently fail if control plane is down
 
@@ -41,8 +42,12 @@ class GhostMachineMiddleware(BaseHTTPMiddleware):
             
             # 3. Append to Physical Disk Log
             log_path = "/var/log/ghostmachine/audit.log"
-            with open(log_path, "a") as f:
-                f.write(json.dumps(fault_payload) + "\n")
+            try:
+                os.makedirs(os.path.dirname(log_path), exist_ok=True)
+                with open(log_path, "a") as f:
+                    f.write(json.dumps(fault_payload) + "\n")
+            except Exception:
+                pass
             
             # 4. Dispatch Asynchronous Network Signal
             asyncio.create_task(fire_webhook(fault_payload))

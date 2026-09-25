@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY pyproject.toml* ./
-RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy asyncpg pydantic redis httpx alembic psycopg2-binary || true
+RUN pip install --no-cache-dir fastapi uvicorn sqlalchemy asyncpg pydantic redis httpx alembic psycopg2-binary pytest pytest-asyncio poetry || true
 
 COPY . .
 

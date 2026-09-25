@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.routes import profile, playground
+from app.core.middleware import GhostMachineMiddleware
 
 # Instantiate the root application object in RAM
 app = FastAPI(
@@ -7,6 +8,9 @@ app = FastAPI(
     description="Reference Target Capstone for Autonomous SRE",
     version="1.0.0"
 )
+
+# Bind the custom GhostMachine exception capture middleware
+app.add_middleware(GhostMachineMiddleware)
 
 # Bind the routers to the root application's lookup table
 app.include_router(profile.router, prefix="/profile", tags=["Profile"])
