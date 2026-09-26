@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Tim O'Hagan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: #1a1f2e;
+            --primary-color: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--surface-color);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-header {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .dashboard-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+        }
+
+        .refresh-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .message-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .message-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sender-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .sender-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .sender-info a:hover {
+            text-decoration: underline;
+        }
+
+        .timestamp {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .message-body {
+            color: var(--text-main);
+            font-size: 1rem;
+            white-space: pre-wrap;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+        }
+
+        /* Loading indicator */
+        .loader {
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Admin Dashboard</h1>
+        <a href="/" class="back-link">← Back to Site</a>
+    </header>
+
+    <main>
+        <div class="dashboard-header">
+            <h2>Inbox</h2>
+            <button class="refresh-btn" onclick="fetchMessages()">Refresh Data</button>
+        </div>
+
+        <div id="messages-container" class="message-grid">
+            <div class="empty-state">
+                <div class="loader"></div>
+                <p style="margin-top: 1rem;">Loading messages...</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            return new Intl.DateTimeFormat('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit'
+            }).format(date);
+        }
+
+        async function fetchMessages() {
+            const container = document.getElementById('messages-container');
+            
+            try {
+                const response = await fetch('/api/contact/');
+                if (!response.ok) throw new Error('Failed to fetch messages');
+                
+                const messages = await response.json();
+                
+                if (messages.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <p>No messages in your inbox yet.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = messages.map(msg => `
+                    <div class="message-card">
+                        <div class="message-header">
+                            <div class="sender-info">
+                                <h3>${escapeHtml(msg.name)}</h3>
+                                <a href="mailto:${escapeHtml(msg.email)}">${escapeHtml(msg.email)}</a>
+                            </div>
+                            <div class="timestamp">
+                                ${formatDate(msg.created_at)}
+                            </div>
+                        </div>
+                        <div class="message-body">${escapeHtml(msg.message)}</div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('Error fetching messages:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <p style="color: #ef4444;">Error loading messages. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function escapeHtml(unsafe) {
+            return (unsafe || '').toString()
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // Load initially
+        fetchMessages();
+    </script>
+</body>
+</html>

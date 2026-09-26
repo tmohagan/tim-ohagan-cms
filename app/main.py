@@ -37,6 +37,11 @@ async def serve_frontend():
     """Serve the premium portfolio frontend."""
     return FileResponse("app/static/index.html")
 
+@app.get("/admin", tags=["Frontend"])
+async def serve_admin():
+    """Serve the admin dashboard."""
+    return FileResponse("app/static/admin.html")
+
 from sqlalchemy.future import select
 
 POSTS_DATA = [
