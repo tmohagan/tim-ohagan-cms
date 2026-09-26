@@ -24,7 +24,7 @@
                 <li><a href="#about" class="nav-item active" data-target="view-about">About</a></li>
                 <li><a href="#posts" class="nav-item" data-target="view-posts">Transmissions</a></li>
                 <li><a href="#playground" class="nav-item" data-target="view-playground">Chaos Playground</a></li>
-                <li><a href="mailto:tim@tim-ohagan.com" class="nav-item">Contact</a></li>
+                <li><a href="#" class="nav-item" onclick="openContactModal(); return false;">Contact</a></li>
                 <li><a href="https://ghostmachine.dev" target="_blank" class="highlight-link">GhostMachine.dev</a></li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
                     <a href="#playground" class="btn primary-btn">
                         <span class="btn-content">Try the Chaos Playground</span>
                     </a>
-                    <a href="mailto:tim@tim-ohagan.com" class="btn secondary-btn">Contact Me</a>
+                    <a href="#" class="btn secondary-btn" onclick="openContactModal(); return false;">Contact Me</a>
                     <a href="https://github.com/tmohagan" target="_blank" class="btn secondary-btn">GitHub Profile</a>
                 </div>
             </div>
@@ -178,6 +178,35 @@ class SRE_Agent(Agent):
 +        raise HTTPException(status_code=400, detail="Schema violation prevented")
 +    process_safe(payload)
                     </code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div id="contact-modal" class="modal-overlay hidden">
+            <div class="modal-content glass-panel" style="max-width: 500px;">
+                <div class="modal-header">
+                    <h2>Contact Tim</h2>
+                    <button class="close-btn" onclick="closeContactModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <form action="https://formsubmit.co/ohagan.email@gmail.com" method="POST" class="contact-form">
+                        <input type="hidden" name="_next" value="https://tim-ohagan.com">
+                        <input type="hidden" name="_captcha" value="false">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" required class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required class="form-control" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea name="message" id="message" required class="form-control" rows="5" placeholder="Hi Tim..."></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>

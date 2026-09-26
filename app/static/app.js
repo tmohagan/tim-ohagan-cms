@@ -185,10 +185,19 @@ async function fetchPosts() {
                 container.appendChild(card);
             });
         }
-    } catch (e) {
+} catch (e) {
         console.error("Failed to load posts", e);
     }
 }
 
 fetchPosts();
 appendLog("GhostMachine telemetry stream initialized. Waiting for fault events...", "info");
+
+// Contact Modal Logic
+function openContactModal() {
+    document.getElementById('contact-modal').classList.remove('hidden');
+}
+
+function closeContactModal() {
+    document.getElementById('contact-modal').classList.add('hidden');
+}
