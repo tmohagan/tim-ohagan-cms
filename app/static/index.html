@@ -102,22 +102,75 @@ class SRE_Agent(Agent):
                 <h2>Interactive <span class="gradient-text">Chaos Playground</span></h2>
                 <p>Trigger live failure vectors against this very site to see GhostMachine.dev capture and remediate the issue in real-time.</p>
             </div>
-            <div class="playground-controls">
-                <button class="btn danger-btn" onclick="triggerFault('500')">Trigger CPU Fault (500)</button>
-                <button class="btn warning-btn" onclick="triggerFault('422')">Trigger Validation Error (422)</button>
+            <div class="playground-controls-grid">
+                <button class="btn danger-btn" onclick="triggerFault('cpu-500')">
+                    <strong>CPU Fault (500)</strong><br><small>Simulates unhandled crash</small>
+                </button>
+                <button class="btn warning-btn" onclick="triggerFault('schema-422')">
+                    <strong>Schema Violation</strong><br><small>Malformed JSON payload</small>
+                </button>
+                <button class="btn danger-btn" onclick="triggerFault('db-deadlock')">
+                    <strong>DB Deadlock</strong><br><small>Concurrent asyncpg faults</small>
+                </button>
+                <button class="btn warning-btn" onclick="triggerFault('memory-asset')">
+                    <strong>Asset Exhaustion</strong><br><small>OOM / Memory spike</small>
+                </button>
             </div>
+
+            <!-- GhostMachine Remediation Stepper -->
+            <div class="remediation-stepper" id="remediation-stepper">
+                <div class="step-indicator" id="step-ingest">Ingest Span</div>
+                <div class="step-line"></div>
+                <div class="step-indicator" id="step-repro">Repro Sandbox</div>
+                <div class="step-line"></div>
+                <div class="step-indicator" id="step-patch">LLM Diff & AST</div>
+                <div class="step-line"></div>
+                <div class="step-indicator" id="step-regress">Regression</div>
+                <div class="step-line"></div>
+                <div class="step-indicator" id="step-pr">PR Generated</div>
+            </div>
+
             <div class="terminal-container">
                 <div class="window-header">
                     <span class="dot red"></span>
                     <span class="dot yellow"></span>
                     <span class="dot green"></span>
                     <span class="title">ghostmachine-stream</span>
+                    <button id="inspect-patch-btn" class="inspect-btn hidden" onclick="showPatchModal()">Inspect Generated Patch & PR</button>
                 </div>
                 <div id="terminal-output" class="terminal-body">
-                    <div class="log-line info">Waiting for telemetry events...</div>
+                    <div class="log-line info">Waiting for OpenTelemetry fault events...</div>
                 </div>
             </div>
         </section>
+
+        <!-- PR Modal -->
+        <div id="pr-modal" class="modal-overlay hidden">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h2><span style="color: #238636;">✓</span> PR #42: Automated Remediation for Chaos Vector</h2>
+                    <button class="close-btn" onclick="closePatchModal()">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-metrics">
+                        <div class="metric"><span class="label">MTTR</span><span class="value">~52s</span></div>
+                        <div class="metric"><span class="label">Cost</span><span class="value" style="color: #0f0;">$0.0263</span></div>
+                        <div class="metric"><span class="label">AST Pass</span><span class="value" style="color: #0f0;">True</span></div>
+                    </div>
+                    <pre><code class="language-diff">
+--- a/app/api/routes/playground.py
++++ b/app/api/routes/playground.py
+@@ -12,4 +12,6 @@
+-    payload = await request.json()
+-    process_unsafe(payload)
++    payload = await request.json()
++    if not validate_schema(payload):
++        raise HTTPException(status_code=400, detail="Schema violation prevented")
++    process_safe(payload)
+                    </code></pre>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>

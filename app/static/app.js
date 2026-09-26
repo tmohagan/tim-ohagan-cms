@@ -21,38 +21,67 @@ async function triggerFault(faultType) {
         if (!response.ok) {
             appendLog(`Target application crashed with status ${response.status}`, 'error');
             appendLog(`GhostMachineMiddleware intercepted crash. Dispatching webhook to control plane...`, 'info');
-            simulateGhostMachineWorkflow();
+            simulateGhostMachineWorkflow(faultType);
         } else {
             appendLog(`Unexpected: Target application survived the fault vector.`, 'warning');
         }
     } catch (error) {
         appendLog(`Network error or severe crash: ${error.message}`, 'error');
-        simulateGhostMachineWorkflow();
+        simulateGhostMachineWorkflow(faultType);
+    }
+}
+
+function resetStepper() {
+    document.querySelectorAll('.step-indicator, .step-line').forEach(el => el.classList.remove('active'));
+    document.getElementById('inspect-patch-btn').classList.add('hidden');
+}
+
+function activateStep(stepId) {
+    const el = document.getElementById(stepId);
+    if (el) {
+        el.classList.add('active');
+        const prevLine = el.previousElementSibling;
+        if (prevLine && prevLine.classList.contains('step-line')) {
+            prevLine.classList.add('active');
+        }
     }
 }
 
 // Simulated WebSocket stream from GhostMachine.dev
-function simulateGhostMachineWorkflow() {
+function simulateGhostMachineWorkflow(faultType) {
+    resetStepper();
     const events = [
-        { msg: "> [GHOSTMACHINE] Webhook received. Trace ID generated.", delay: 800, type: "info" },
+        { msg: "> [GHOSTMACHINE] Webhook received. Trace ID generated.", delay: 800, type: "info", step: "step-ingest" },
         { msg: "> [GHOSTMACHINE] Analyzing traceback and local variables...", delay: 1500, type: "info" },
-        { msg: "> [GHOSTMACHINE] Synthesizing reproduction test in Docker sandbox...", delay: 3000, type: "warning" },
+        { msg: "> [GHOSTMACHINE] Synthesizing reproduction test in Docker sandbox...", delay: 3000, type: "warning", step: "step-repro" },
         { msg: "> [GHOSTMACHINE] Sandbox execution failed as expected. Bug confirmed.", delay: 4500, type: "success" },
-        { msg: "> [GHOSTMACHINE] LLM Agent drafting patch...", delay: 6000, type: "info" },
+        { msg: "> [GHOSTMACHINE] LLM Agent drafting patch...", delay: 6000, type: "info", step: "step-patch" },
         { msg: "> [GHOSTMACHINE] Patch generated. Running AST Static Analysis...", delay: 7500, type: "info" },
         { msg: "> [GHOSTMACHINE] AST Guardrails Passed. No protected paths modified.", delay: 8500, type: "success" },
-        { msg: "> [GHOSTMACHINE] Running full regression suite against patched sandbox...", delay: 10500, type: "warning" },
+        { msg: "> [GHOSTMACHINE] Running full regression suite against patched sandbox...", delay: 10500, type: "warning", step: "step-regress" },
         { msg: "> [GHOSTMACHINE] Regression tests PASSED. Exit Code 0.", delay: 12500, type: "success" },
-        { msg: "> [GHOSTMACHINE] Remediation complete. Pull Request opened on GitHub.", delay: 13500, type: "success" },
+        { msg: "> [GHOSTMACHINE] Remediation complete. Pull Request opened on GitHub.", delay: 13500, type: "success", step: "step-pr" },
         { msg: "> [GHOSTMACHINE] SRE Post-Mortem generated in /incidents.", delay: 14000, type: "info" },
-        { msg: "System fully recovered. Ready for next event.", delay: 15000, type: "info" }
+        { msg: "System fully recovered. Ready for next event.", delay: 15000, type: "info", onComplete: true }
     ];
     
     events.forEach(event => {
         setTimeout(() => {
             appendLog(event.msg, event.type);
+            if (event.step) activateStep(event.step);
+            if (event.onComplete) {
+                document.getElementById('inspect-patch-btn').classList.remove('hidden');
+            }
         }, event.delay);
     });
+}
+
+function showPatchModal() {
+    document.getElementById('pr-modal').classList.remove('hidden');
+}
+
+function closePatchModal() {
+    document.getElementById('pr-modal').classList.add('hidden');
 }
 
 // Smooth scrolling for navigation
