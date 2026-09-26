@@ -46,3 +46,18 @@ class CommentResponse(CommentBase):
 
     class Config:
         from_attributes = True
+
+class ContactMessageBase(BaseModel):
+    name: str = Field(..., max_length=100)
+    email: str = Field(..., max_length=200)
+    message: str
+
+class ContactMessageCreate(ContactMessageBase):
+    pass
+
+class ContactMessageResponse(ContactMessageBase):
+    id: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True

@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.api.routes import profile, playground, posts, comments
+from app.api.routes import profile, playground, posts, comments, contact
 from app.core.middleware import GhostMachineMiddleware
 from app.core.database import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -22,6 +22,7 @@ app.include_router(profile.router, prefix="/profile", tags=["Profile"])
 app.include_router(posts.router, prefix="/posts", tags=["Posts"])
 app.include_router(comments.router, prefix="/comments", tags=["Comments"])
 app.include_router(playground.router, prefix="/playground", tags=["Chaos"])
+app.include_router(contact.router, prefix="/api/contact", tags=["Contact"])
 
 @app.get("/health", tags=["System"])
 async def health_check():

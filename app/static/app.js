@@ -196,8 +196,47 @@ appendLog("GhostMachine telemetry stream initialized. Waiting for fault events..
 // Contact Modal Logic
 function openContactModal() {
     document.getElementById('contact-modal').classList.remove('hidden');
+    document.getElementById('contact-success').classList.add('hidden');
+    document.getElementById('contact-form').reset();
 }
 
 function closeContactModal() {
     document.getElementById('contact-modal').classList.add('hidden');
+}
+
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.innerText = 'Sending...';
+        btn.disabled = true;
+
+        const payload = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const res = await fetch('/api/contact/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (res.ok) {
+                document.getElementById('contact-form').reset();
+                document.getElementById('contact-success').classList.remove('hidden');
+            } else {
+                alert('Failed to send message.');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error sending message.');
+        } finally {
+            btn.innerText = originalText;
+            btn.disabled = false;
+        }
+    });
 }

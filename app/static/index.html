@@ -190,9 +190,7 @@ class SRE_Agent(Agent):
                     <button class="close-btn" onclick="closeContactModal()">×</button>
                 </div>
                 <div class="modal-body">
-                    <form action="https://formsubmit.co/ohagan.email@gmail.com" method="POST" class="contact-form">
-                        <input type="hidden" name="_next" value="https://tim-ohagan.com">
-                        <input type="hidden" name="_captcha" value="false">
+                    <form id="contact-form" class="contact-form">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name" required class="form-control" placeholder="Your Name">
@@ -207,6 +205,9 @@ class SRE_Agent(Agent):
                         </div>
                         <button type="submit" class="btn primary-btn" style="width: 100%; margin-top: 10px;">Send Message</button>
                     </form>
+                    <div id="contact-success" class="hidden" style="margin-top: 15px; text-align: center; color: #3fb950; font-weight: 500;">
+                        Message sent successfully!
+                    </div>
                 </div>
             </div>
         </div>
