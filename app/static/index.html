@@ -21,17 +21,18 @@
         <div class="nav-content">
             <div class="brand">Tim<span>OHagan</span></div>
             <ul class="nav-links">
-                <li><a href="#hero" class="active">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#posts">Posts</a></li>
-                <li><a href="#playground">Chaos Playground</a></li>
+                <li><a href="#about" class="nav-item active" data-target="view-about">About</a></li>
+                <li><a href="#posts" class="nav-item" data-target="view-posts">Transmissions</a></li>
+                <li><a href="#playground" class="nav-item" data-target="view-playground">Chaos Playground</a></li>
                 <li><a href="https://ghostmachine.dev" target="_blank" class="highlight-link">GhostMachine.dev</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
-        <section id="hero" class="hero-section glass-panel">
+        <!-- SPA View: About -->
+        <div id="view-about" class="spa-view active">
+            <section id="hero" class="hero-section glass-panel">
             <div class="hero-content">
                 <span class="badge">Open to Opportunities</span>
                 <h1 class="title">Software <span class="gradient-text">Agentic</span> Engineer</h1>
@@ -89,14 +90,20 @@ class SRE_Agent(Agent):
                 </div>
             </div>
         </section>
+        </div>
 
+        <!-- SPA View: Posts -->
+        <div id="view-posts" class="spa-view">
         <section id="posts" class="posts-section">
             <h2 class="section-title">Latest <span class="gradient-text">Transmissions</span></h2>
             <div id="posts-container" class="posts-grid">
                 <!-- Posts will be loaded here dynamically by app.js -->
             </div>
         </section>
+        </div>
 
+        <!-- SPA View: Playground -->
+        <div id="view-playground" class="spa-view">
         <section id="playground" class="playground-section glass-panel highlight-panel">
             <div class="playground-header">
                 <h2>Interactive <span class="gradient-text">Chaos Playground</span></h2>
@@ -143,6 +150,7 @@ class SRE_Agent(Agent):
                 </div>
             </div>
         </section>
+        </div>
 
         <!-- PR Modal -->
         <div id="pr-modal" class="modal-overlay hidden">

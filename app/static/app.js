@@ -84,16 +84,25 @@ function closePatchModal() {
     document.getElementById('pr-modal').classList.add('hidden');
 }
 
-// Smooth scrolling for navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+// SPA Navigation Logic
+document.querySelectorAll('.nav-item').forEach(link => {
+    link.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        
+        // Update active nav link
+        document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Switch visible view
+        document.querySelectorAll('.spa-view').forEach(view => {
+            view.classList.remove('active');
+        });
+        
+        const targetId = this.getAttribute('data-target');
+        const targetView = document.getElementById(targetId);
+        if (targetView) {
+            targetView.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top smoothly
         }
     });
 });
