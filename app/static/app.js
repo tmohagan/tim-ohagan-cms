@@ -98,27 +98,77 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+function getPostTags(title, content) {
+    const text = (title + " " + content).toLowerCase();
+    const tags = [];
+    if (text.includes("ast") || text.includes("guardrail") || text.includes("security")) tags.push("AST Security");
+    if (text.includes("langgraph") || text.includes("state machine")) tags.push("LangGraph");
+    if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("savings")) tags.push("SRE Economics");
+    if (text.includes("sandbox") || text.includes("docker") || text.includes("pytest")) tags.push("Sandboxing");
+    if (text.includes("webhook") || text.includes("telemetry") || text.includes("opentelemetry")) tags.push("Telemetry");
+    if (text.includes("ghostmachine") && tags.length < 3) tags.push("Autonomous SRE");
+    if (tags.length === 0) tags.push("Engineering");
+    return tags.slice(0, 3);
+}
+
+function parseMarkdownToHTML(markdown) {
+    return markdown
+        .replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>')
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .split('\n\n')
+        .map(block => {
+            const trimmed = block.trim();
+            if (trimmed.startsWith('1.') || trimmed.startsWith('2.') || trimmed.startsWith('3.') || trimmed.startsWith('4.') || trimmed.startsWith('5.')) {
+                const items = trimmed.split('\n').map(line => {
+                    const cleanLine = line.replace(/^\d+\.\s*/, '');
+                    return `<li>${cleanLine}</li>`;
+                }).join('');
+                return `<ol class="post-ordered-list">${items}</ol>`;
+            } else if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
+                const items = trimmed.split('\n').map(line => {
+                    const cleanLine = line.replace(/^[•\-]\s*/, '');
+                    return `<li>${cleanLine}</li>`;
+                }).join('');
+                return `<ul class="post-bullet-list">${items}</ul>`;
+            } else {
+                return `<p>${trimmed.replace(/\n/g, '<br>')}</p>`;
+            }
+        })
+        .join('');
+}
+
 async function fetchPosts() {
     try {
-        const response = await fetch('/posts/');
+        const response = await fetch('/posts/?limit=20');
         if (response.ok) {
             const posts = await response.json();
             const container = document.getElementById('posts-container');
             container.innerHTML = '';
             
             posts.forEach(post => {
-                const card = document.createElement('div');
+                const card = document.createElement('article');
                 card.className = 'post-card glass-panel';
                 
-                // Simple markdown-to-html conversion for basic paragraphs and bold text
-                let htmlContent = post.content
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .split('\n\n')
-                    .map(para => `<p>${para.replace(/\n/g, '<br>')}</p>`)
-                    .join('');
+                const tags = getPostTags(post.title, post.content);
+                const tagPills = tags.map(tag => `<span class="post-tag">${tag}</span>`).join('');
+                
+                const words = post.content.split(/\s+/).length;
+                const readMinutes = Math.max(1, Math.ceil(words / 180));
+                
+                const formattedDate = post.created_at 
+                    ? new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                    : 'System Transmission';
+
+                const htmlContent = parseMarkdownToHTML(post.content);
 
                 card.innerHTML = `
-                    <h3>${post.title}</h3>
+                    <div class="post-meta">
+                        <div class="post-tags-group">${tagPills}</div>
+                        <div class="post-time-meta">
+                            <span>${formattedDate}</span> • <span>${readMinutes} min read</span>
+                        </div>
+                    </div>
+                    <h3 class="post-title">${post.title}</h3>
                     <div class="post-content">
                         ${htmlContent}
                     </div>

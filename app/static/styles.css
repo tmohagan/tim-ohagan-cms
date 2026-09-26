@@ -372,28 +372,104 @@ pre {
 }
 
 .post-card {
-    padding: 40px;
-    transition: transform 0.3s ease;
+    padding: 36px 40px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
 }
 
-.post-card h3 {
-    font-size: 1.8rem;
+.post-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.45), 0 0 20px -5px rgba(99, 102, 241, 0.25);
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
     margin-bottom: 16px;
-    color: var(--accent-1);
+}
+
+.post-tags-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.post-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(99, 102, 241, 0.12);
+    color: #a5b4fc;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.post-time-meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-family: 'Fira Code', monospace;
+    opacity: 0.8;
+}
+
+.post-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: var(--text-primary);
+    line-height: 1.3;
 }
 
 .post-content {
     color: var(--text-secondary);
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .post-content p {
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+}
+
+.post-content p strong,
+.post-ordered-list li strong,
+.post-bullet-list li strong {
+    color: var(--text-primary);
 }
 
 .post-content p:last-child {
     margin-bottom: 0;
+}
+
+.inline-code {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38bdf8;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9em;
+    border: 1px solid rgba(56, 189, 248, 0.22);
+}
+
+.post-ordered-list,
+.post-bullet-list {
+    margin: 16px 0 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-ordered-list li,
+.post-bullet-list li {
+    line-height: 1.7;
+    color: var(--text-secondary);
 }
 
 /* Playground Section */
