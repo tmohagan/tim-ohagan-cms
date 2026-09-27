@@ -756,7 +756,7 @@ footer {
 @media (max-width: 600px) {
     html, body {
         overflow-x: hidden;
-        width: 100vw;
+        width: 100%;
     }
 
     .container {
