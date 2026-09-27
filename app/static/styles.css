@@ -231,9 +231,9 @@ body {
     max-width: 500px;
 }
 
-/* Buttons */
 .cta-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -667,6 +667,17 @@ footer {
 
 /* Responsive */
 @media (max-width: 900px) {
+    .nav-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
     .hero-section {
         flex-direction: column;
         padding: 40px 24px;
