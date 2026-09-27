@@ -821,6 +821,11 @@ footer {
         border-right: none;
     }
 
+    pre {
+        padding: 15px;
+        font-size: 0.75rem;
+    }
+
     .remediation-stepper {
         flex-direction: column;
         align-items: center;

@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/styles.css?v=1.5">
+    <link rel="stylesheet" href="/static/styles.css?v=1.6">
 </head>
 <body>
     <div class="ambient-background">
@@ -45,8 +45,6 @@
                     <button class="btn danger-btn" onclick="triggerTotalSiteCrash()" style="background: rgba(220, 38, 38, 0.2); border-color: #dc2626; color: #f87171; text-transform: uppercase; font-weight: bold; letter-spacing: 1px;">
                         <span class="btn-content">⚠️ Break My Site ⚠️</span>
                     </button>
-                    <a href="#" class="btn secondary-btn" onclick="openContactModal(); return false;">Contact Me</a>
-                    <a href="https://github.com/tmohagan" target="_blank" class="btn secondary-btn">GitHub</a>
                 </div>
             </div>
             <div class="hero-visual">
@@ -89,6 +87,19 @@ class SRE_Agent(Agent):
                     <div class="skill-icon">🛡️</div>
                     <h3>SRE & Infrastructure</h3>
                     <p>Docker, Caddy, OpenTelemetry, Chaos Engineering, Automated CI/CD Pipelines</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="github" class="github-section glass-panel highlight-panel" style="text-align: center; margin-bottom: 80px;">
+            <div class="github-content">
+                <h2 class="section-title">Open Source <span class="gradient-text">Core</span></h2>
+                <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto 30px auto; font-size: 1.1rem;">
+                    The entire GhostMachine project, including this CMS and the autonomous control plane, is open source. Check out the architecture, agent behaviors, and deployment infrastructure on GitHub.
+                </p>
+                <div class="cta-group" style="justify-content: center;">
+                    <a href="https://github.com/tmohagan/tim-ohagan-cms" target="_blank" class="btn primary-btn">CMS Repo</a>
+                    <a href="https://github.com/tmohagan/ghostmachine-core" target="_blank" class="btn secondary-btn">GhostMachine Repo</a>
                 </div>
             </div>
         </section>
