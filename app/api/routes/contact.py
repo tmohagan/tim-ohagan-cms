@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 
 from app.core.database import get_db
+from app.core.security import get_current_admin
 from app.models.sql_models import ContactMessage
 from app.schemas.pydantic_schemas import ContactMessageCreate, ContactMessageResponse
 
@@ -28,9 +29,14 @@ async def submit_contact_message(message_in: ContactMessageCreate, db: AsyncSess
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/", response_model=list[ContactMessageResponse])
-async def get_contact_messages(skip: int = 0, limit: int = 50, db: AsyncSession = Depends(get_db)):
+async def get_contact_messages(
+    skip: int = 0, 
+    limit: int = 50, 
+    db: AsyncSession = Depends(get_db),
+    admin: str = Depends(get_current_admin)
+):
     """
-    Retrieve contact messages.
+    Retrieve contact messages. Protected by admin authentication.
     """
     query = select(ContactMessage).offset(skip).limit(limit).order_by(ContactMessage.created_at.desc())
     result = await db.execute(query)

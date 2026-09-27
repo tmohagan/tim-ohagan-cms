@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+Disallow: /playground/fault/
+
+Sitemap: https://tim-ohagan.com/sitemap.xml

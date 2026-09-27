@@ -29,8 +29,22 @@ async def health_check():
     """Deterministic pulse check to verify the process is alive."""
     return {"status": "ok", "service": "tim-ohagan-cms"}
 
+from app.core.security import get_current_admin
+
 # Mount static files for the frontend
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def serve_favicon():
+    return FileResponse("app/static/favicon.ico")
+
+@app.get("/robots.txt", include_in_schema=False)
+async def serve_robots():
+    return FileResponse("app/static/robots.txt")
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def serve_sitemap():
+    return FileResponse("app/static/sitemap.xml", media_type="application/xml")
 
 @app.get("/", tags=["Frontend"])
 async def serve_frontend():
@@ -38,8 +52,8 @@ async def serve_frontend():
     return FileResponse("app/static/index.html")
 
 @app.get("/admin", tags=["Frontend"])
-async def serve_admin():
-    """Serve the admin dashboard."""
+async def serve_admin(admin: str = Depends(get_current_admin)):
+    """Serve the admin dashboard, protected by HTTP Basic Auth."""
     return FileResponse("app/static/admin.html")
 
 from sqlalchemy.future import select
@@ -68,8 +82,11 @@ POSTS_DATA = [
 ]
 
 @app.post("/seed", tags=["System"])
-async def seed_production_db(db: AsyncSession = Depends(get_db)):
-    """Seed or update all showcase technical posts in the database."""
+async def seed_production_db(
+    db: AsyncSession = Depends(get_db),
+    admin: str = Depends(get_current_admin)
+):
+    """Seed or update all showcase technical posts in the database. Protected by admin authentication."""
     # Create or retrieve Profile
     result = await db.execute(select(Profile).where(Profile.name == "Tim OHagan"))
     tim_profile = result.scalars().first()

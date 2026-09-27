@@ -60,8 +60,44 @@ function activateStep(stepId) {
     }
 }
 
+const PATCH_TEMPLATES = {
+    'cpu-500': {
+        title: "PR #42: Automated Remediation for CPU Fault (ZeroDivisionError)",
+        mttr: "~52s",
+        cost: "$0.0263",
+        diff: `--- a/app/api/routes/playground.py\n+++ b/app/api/routes/playground.py\n@@ -10,2 +10,4 @@\n-    fault = 1 / 0\n+    divisor = request.query_params.get("divisor", 1)\n+    fault = 1 / (int(divisor) if int(divisor) != 0 else 1)\n     return {"result": fault}`
+    },
+    'schema-422': {
+        title: "PR #43: Automated Schema Fallback & Validation Normalization",
+        mttr: "~48s",
+        cost: "$0.0241",
+        diff: `--- a/app/schemas/pydantic_schemas.py\n+++ b/app/schemas/pydantic_schemas.py\n@@ -12,2 +12,4 @@\n-    trace_id: str\n+    trace_id: Optional[str] = Field(default_factory=lambda: uuid.uuid4().hex)`
+    },
+    'db-deadlock': {
+        title: "PR #44: Dynamic Backoff & Lock Timeout for Deadlock Prevention",
+        mttr: "~64s",
+        cost: "$0.0289",
+        diff: `--- a/app/core/database.py\n+++ b/app/core/database.py\n@@ -15,2 +15,5 @@\n+    connect_args={"command_timeout": 5},\n+    execution_options={"isolation_level": "READ COMMITTED"}`
+    },
+    'memory-asset': {
+        title: "PR #45: Stream Backpressure Buffer for Asset Processing",
+        mttr: "~59s",
+        cost: "$0.0274",
+        diff: `--- a/app/core/storage.py\n+++ b/app/core/storage.py\n@@ -25,2 +25,4 @@\n-    raw = file.read()\n+    raw = await stream_with_backpressure(file, chunk_size=65536)`
+    },
+    'total-crash': {
+        title: "PR #46: Full Fault Isolation & Circuit Breaker Engagement",
+        mttr: "~38s",
+        cost: "$0.0195",
+        diff: `--- a/app/main.py\n+++ b/app/main.py\n@@ -18,2 +18,4 @@\n-    app.add_middleware(GhostMachineMiddleware)\n+    app.add_middleware(GhostMachineMiddleware, circuit_breaker=True)`
+    }
+};
+
+let currentFaultType = 'cpu-500';
+
 // Simulated WebSocket stream from GhostMachine.dev
 function simulateGhostMachineWorkflow(faultType) {
+    currentFaultType = faultType;
     resetStepper();
     const events = [
         { msg: "> [GHOSTMACHINE] Webhook received. Trace ID generated.", delay: 800, type: "info", step: "step-ingest" },
@@ -91,6 +127,21 @@ function simulateGhostMachineWorkflow(faultType) {
 }
 
 function showPatchModal() {
+    const patchData = PATCH_TEMPLATES[currentFaultType] || PATCH_TEMPLATES['cpu-500'];
+    const modalHeader = document.querySelector('#pr-modal .modal-header h2');
+    const modalMetrics = document.querySelector('#pr-modal .modal-metrics');
+    const modalCode = document.querySelector('#pr-modal pre code');
+    
+    if (modalHeader) modalHeader.innerHTML = `<span style="color: #238636;">✓</span> ${escapeHtml(patchData.title)}`;
+    if (modalMetrics) {
+        modalMetrics.innerHTML = `
+            <div class="metric"><span class="label">MTTR</span><span class="value">${patchData.mttr}</span></div>
+            <div class="metric"><span class="label">Cost</span><span class="value" style="color: #0f0;">${patchData.cost}</span></div>
+            <div class="metric"><span class="label">AST Pass</span><span class="value" style="color: #0f0;">True</span></div>
+        `;
+    }
+    if (modalCode) modalCode.textContent = patchData.diff;
+
     document.getElementById('pr-modal').classList.remove('hidden');
 }
 
@@ -98,28 +149,69 @@ function closePatchModal() {
     document.getElementById('pr-modal').classList.add('hidden');
 }
 
-// SPA Navigation Logic
+// Escape key to close modals
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closePatchModal();
+        closeContactModal();
+    }
+});
+
+// Centralized SPA View Navigation
+function switchView(targetId, updateHash = true) {
+    const targetView = document.getElementById(targetId);
+    if (!targetView) return;
+
+    // Update active nav links
+    document.querySelectorAll('.nav-item').forEach(l => {
+        if (l.getAttribute('data-target') === targetId) {
+            l.classList.add('active');
+        } else {
+            l.classList.remove('active');
+        }
+    });
+
+    // Update visible views
+    document.querySelectorAll('.spa-view').forEach(view => {
+        view.classList.remove('active');
+    });
+    targetView.classList.add('active');
+
+    if (updateHash) {
+        const hash = targetId.replace('view-', '');
+        history.pushState(null, null, `#${hash}`);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Bind click handlers to nav items
 document.querySelectorAll('.nav-item').forEach(link => {
     link.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Update active nav link
-        document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Switch visible view
-        document.querySelectorAll('.spa-view').forEach(view => {
-            view.classList.remove('active');
-        });
-        
         const targetId = this.getAttribute('data-target');
-        const targetView = document.getElementById(targetId);
-        if (targetView) {
-            targetView.classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top smoothly
+        if (targetId) {
+            e.preventDefault();
+            switchView(targetId, true);
         }
     });
 });
+
+// Hash Routing on initial load and back/forward navigation
+function handleHashRoute() {
+    const rawHash = (window.location.hash || '').replace('#', '').toLowerCase();
+    const validTargets = {
+        'about': 'view-about',
+        'posts': 'view-posts',
+        'transmissions': 'view-posts',
+        'playground': 'view-playground',
+        'chaos': 'view-playground'
+    };
+
+    const targetId = validTargets[rawHash] || 'view-about';
+    switchView(targetId, false);
+}
+
+window.addEventListener('DOMContentLoaded', handleHashRoute);
+window.addEventListener('hashchange', handleHashRoute);
 
 function getPostTags(title, content) {
     const text = (title + " " + content).toLowerCase();

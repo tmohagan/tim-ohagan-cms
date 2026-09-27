@@ -10,6 +10,9 @@ services:
       - DATABASE_URL=postgresql+asyncpg://${POSTGRES_USER:-cms_user}:${POSTGRES_PASSWORD:-cms_password}@cms-postgres:5432/${POSTGRES_DB:-cms_db}
       - REDIS_URL=redis://cms-redis:6379/0
       - GHOSTMACHINE_WEBHOOK_URL=${GHOSTMACHINE_WEBHOOK_URL:-http://ghostmachine.local:8000/api/webhooks}
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET:-supersecretwebhook123}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme_admin_pass}
     networks:
       - ghostmachine-bridge
     depends_on:

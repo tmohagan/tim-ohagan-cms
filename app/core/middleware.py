@@ -12,9 +12,14 @@ from starlette.responses import JSONResponse
 async def fire_webhook(payload: dict):
     """Isolated background coroutine to transmit telemetry over TCP."""
     webhook_url = os.environ.get("GHOSTMACHINE_WEBHOOK_URL", "http://ghostmachine.local:8000/api/webhooks")
+    webhook_secret = os.environ.get("WEBHOOK_SECRET")
+    headers = {"Content-Type": "application/json"}
+    if webhook_secret:
+        headers["X-GhostMachine-Secret"] = webhook_secret
+
     async with httpx.AsyncClient() as client:
         try:
-            await client.post(webhook_url, json=payload, timeout=2.0)
+            await client.post(webhook_url, json=payload, headers=headers, timeout=2.0)
         except Exception:
             pass # Silently fail if control plane is down
 
@@ -29,13 +34,17 @@ class GhostMachineMiddleware(BaseHTTPMiddleware):
             # 1. Capture RAM Stack Trace
             memory_trace = "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
             
-            # 2. Extract TCP Socket Context
+            # 2. Extract TCP Socket Context (redacting sensitive headers)
+            scrubbed_headers = {
+                k: ("[REDACTED]" if k.lower() in ("authorization", "cookie", "x-api-key", "x-ghostmachine-secret") else v)
+                for k, v in request.headers.items()
+            }
             fault_payload = {
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "trace_id": trace_id,
                 "method": request.method,
                 "url": str(request.url),
-                "headers": dict(request.headers),
+                "headers": scrubbed_headers,
                 "error_class": exc.__class__.__name__,
                 "traceback": memory_trace
             }
