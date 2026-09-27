@@ -866,7 +866,7 @@ footer {
     .window-header {
         flex-wrap: wrap;
         gap: 8px;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 10px;
     }
 
