@@ -31,6 +31,19 @@ async function triggerFault(faultType) {
     }
 }
 
+function triggerTotalSiteCrash() {
+    // Navigate to playground
+    document.querySelector('[data-target="view-playground"]').click();
+    
+    // Add crash CSS to body
+    document.body.classList.add('site-crashed');
+    
+    appendLog(`FATAL ERROR: Total site crash initiated by user. Cascading failure...`, 'error');
+    
+    // Simulate GhostMachine fixing it
+    simulateGhostMachineWorkflow('total-crash');
+}
+
 function resetStepper() {
     document.querySelectorAll('.step-indicator, .step-line').forEach(el => el.classList.remove('active'));
     document.getElementById('inspect-patch-btn').classList.add('hidden');
@@ -71,6 +84,7 @@ function simulateGhostMachineWorkflow(faultType) {
             if (event.step) activateStep(event.step);
             if (event.onComplete) {
                 document.getElementById('inspect-patch-btn').classList.remove('hidden');
+                document.body.classList.remove('site-crashed'); // Restore site!
             }
         }, event.delay);
     });

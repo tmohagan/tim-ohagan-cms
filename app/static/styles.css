@@ -876,3 +876,31 @@ footer {
 .form-control::placeholder {
     color: rgba(255, 255, 255, 0.2);
 }
+
+/* Site Crash Effects */
+body.site-crashed {
+    animation: criticalShake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+    position: relative;
+}
+body.site-crashed::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.1) 1px, transparent 1px, transparent 2px);
+    z-index: 9999;
+    pointer-events: none;
+    animation: staticFlicker 0.15s infinite;
+}
+
+@keyframes criticalShake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@keyframes staticFlicker {
+    0% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.9; }
+}
