@@ -753,6 +753,12 @@ footer {
     }
 }
 
+@media (max-width: 600px) {
+    .playground-controls-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Modal UI */
 .hidden {
     display: none !important;
