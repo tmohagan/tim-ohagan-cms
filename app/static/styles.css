@@ -678,6 +678,10 @@ footer {
         gap: 15px;
     }
 
+    .container {
+        margin-top: 180px;
+    }
+
     .hero-section {
         flex-direction: column;
         padding: 40px 24px;
