@@ -759,8 +759,29 @@ footer {
         width: 100%;
     }
 
+    .glass-nav {
+        padding: 10px 0;
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    .nav-content {
+        gap: 8px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+    
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
     .container {
         padding: 0 !important;
+        margin-top: 130px;
     }
     
     .playground-controls-grid {
@@ -770,6 +791,16 @@ footer {
     
     .title {
         font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
     }
 
     .hero-section {
