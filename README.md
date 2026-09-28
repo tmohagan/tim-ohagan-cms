@@ -22,8 +22,8 @@ Portfolio and Content Management System for **Tim O'Hagan** (Software Agentic En
 ## Architecture & Technology Stack
 
 - **Backend Framework**: [FastAPI](https://fastapi.tiangolo.com/) (Async Python 3.11+)
-- **Database & ORM**: PostgreSQL 15 via `asyncpg` with [SQLAlchemy 2.0](https://www.sqlalchemy.org/)
-- **Database Migrations**: [Alembic](https://alembic.sqlalchemy.org/)
+- **Database & ORM**: PostgreSQL 15 via `asyncpg` with [SQLAlchemy 2.0](https://www.sqlalchemy.org/) (`profiles`, `posts`, `contact_messages`)
+- **Database Migrations**: [Alembic](https://alembic.sqlalchemy.org/) (revisions `106fe860d751` & `206fe860d752`)
 - **In-Memory Cache**: Redis 7
 - **Authentication**: HTTP Basic Auth with constant-time string hashing (`secrets.compare_digest`)
 - **Frontend**: Vanilla HTML5, CSS3 (Glassmorphic dark design system), SPA hash routing
@@ -48,7 +48,7 @@ Custom Starlette/FastAPI middleware that intercepts uncaught application crashes
 - **Authenticated Outbound Webhook**: Attaches `X-GhostMachine-Secret` and dispatches telemetry asynchronously to the GhostMachine control plane.
 
 ### 3. Protected Contact Inbox & Admin Dashboard (`/admin`)
-- Contact messages submitted via the public contact modal are stored securely in PostgreSQL.
+- Contact messages submitted via the public contact modal are stored securely in PostgreSQL (`contact_messages` table).
 - Access to `GET /api/contact/`, `/admin`, and `POST /seed` is strictly gated behind HTTP Basic Authentication (`get_current_admin`).
 
 ### 4. SEO & Social Previews
@@ -78,19 +78,22 @@ Custom Starlette/FastAPI middleware that intercepts uncaught application crashes
 # Start all services (app, postgres, redis)
 docker compose up --build -d
 
+# Run database migrations to head
+docker exec cms-app poetry run alembic upgrade head
+
 # Verify services are running
 docker compose ps
 ```
 
-The application will be accessible at `http://localhost:8000`.
+The application will be accessible at `http://localhost:8000` (or via Caddy at `https://tim-ohagan.local`).
 
-### Running Unit & Security Tests
+### Running Unit & Incident Tests
 ```bash
-# Run tests inside the running container
-docker exec cms-app pytest -v
+# Run complete test suite (unit + incident tests) inside container
+docker exec cms-app poetry run pytest -v
 
-# Or run locally via Poetry
-poetry run pytest -v
+# Run unit tests only
+docker exec cms-app poetry run pytest tests/unit/ -v
 ```
 
 ---
