@@ -1,6 +1,6 @@
 version: "1"
 project_id: "tim-ohagan-cms"
-repo: "https://github.com/tim-ohagan/cms-core"
+repo: "https://github.com/tmohagan/tim-ohagan-cms"
 
 runtime:
   language: "python"
