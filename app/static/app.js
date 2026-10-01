@@ -636,7 +636,7 @@ if (contactForm) {
             setTimeout(() => {
                 document.body.classList.remove('haunted-glitch');
                 document.body.classList.toggle('theme-eurisko-1993');
-            }, 1200);
+            }, 3000);
         });
     }
 })();

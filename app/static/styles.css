@@ -981,6 +981,14 @@ body.haunted-glitch::after {
     z-index: 99999;
     pointer-events: none;
     text-shadow: 2px 0 0 red, -2px 0 0 blue;
+    text-align: center;
+    width: 90%;
+}
+
+@media (max-width: 768px) {
+    body.haunted-glitch::after {
+        font-size: 2rem;
+    }
 }
 
 @keyframes chromaticAberration {
