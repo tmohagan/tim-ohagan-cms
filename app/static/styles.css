@@ -975,20 +975,15 @@ body.haunted-glitch::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 4rem;
+    font-size: clamp(1rem, 8vw, 4rem);
     font-family: monospace;
     color: rgba(255, 176, 0, 0.8);
     z-index: 99999;
     pointer-events: none;
     text-shadow: 2px 0 0 red, -2px 0 0 blue;
     text-align: center;
-    width: 90%;
-}
-
-@media (max-width: 768px) {
-    body.haunted-glitch::after {
-        font-size: 2rem;
-    }
+    width: 90vw;
+    word-break: break-all;
 }
 
 @keyframes chromaticAberration {
