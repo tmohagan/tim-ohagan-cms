@@ -12,6 +12,8 @@ services:
       - WEBHOOK_SECRET=${WEBHOOK_SECRET:-supersecretwebhook123}
       - ADMIN_USERNAME=${ADMIN_USERNAME:-admin}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme_admin_pass}
+    ports:
+      - "8000:8000"
     networks:
       - ghostmachine-bridge
     depends_on:

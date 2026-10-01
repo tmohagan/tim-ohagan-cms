@@ -18,6 +18,7 @@ class ProfileResponse(ProfileBase):
 
 class PostBase(BaseModel):
     title: str = Field(..., max_length=200)
+    category: Optional[str] = Field("Autonomous SRE", max_length=100)
     content: str = Field(..., description="Markdown content of the post.")
     author_id: Optional[int] = Field(None)
 

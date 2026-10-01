@@ -1,8 +1,18 @@
-// app.js - Frontend Logic for Tim O'Hagan CMS
+// app.js - Frontend Logic for Tim O'Hagan CMS (v2.0 with Categorized Transmissions)
 
 const terminal = document.getElementById('terminal-output');
 
+function escapeHtml(unsafe) {
+    return (unsafe || '').toString()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function appendLog(message, type = 'info') {
+    if (!terminal) return;
     const timestamp = new Date().toISOString().split('T')[1].slice(0, 12);
     const line = document.createElement('div');
     line.className = `log-line ${type}`;
@@ -32,21 +42,18 @@ async function triggerFault(faultType) {
 }
 
 function triggerTotalSiteCrash() {
-    // Navigate to playground
-    document.querySelector('[data-target="view-playground"]').click();
+    const playgroundNav = document.querySelector('[data-target="view-playground"]');
+    if (playgroundNav) playgroundNav.click();
     
-    // Add crash CSS to body
     document.body.classList.add('site-crashed');
-    
     appendLog(`FATAL ERROR: Total site crash initiated by user. Cascading failure...`, 'error');
-    
-    // Simulate GhostMachine fixing it
     simulateGhostMachineWorkflow('total-crash');
 }
 
 function resetStepper() {
     document.querySelectorAll('.step-indicator, .step-line').forEach(el => el.classList.remove('active'));
-    document.getElementById('inspect-patch-btn').classList.add('hidden');
+    const inspectBtn = document.getElementById('inspect-patch-btn');
+    if (inspectBtn) inspectBtn.classList.add('hidden');
 }
 
 function activateStep(stepId) {
@@ -91,11 +98,10 @@ const PATCH_TEMPLATES = {
         cost: "$0.0195",
         diff: `--- a/app/main.py\n+++ b/app/main.py\n@@ -18,2 +18,4 @@\n-    app.add_middleware(GhostMachineMiddleware)\n+    app.add_middleware(GhostMachineMiddleware, circuit_breaker=True)`
     }
-};
+ };
 
 let currentFaultType = 'cpu-500';
 
-// Simulated WebSocket stream from GhostMachine.dev
 function simulateGhostMachineWorkflow(faultType) {
     currentFaultType = faultType;
     resetStepper();
@@ -119,8 +125,9 @@ function simulateGhostMachineWorkflow(faultType) {
             appendLog(event.msg, event.type);
             if (event.step) activateStep(event.step);
             if (event.onComplete) {
-                document.getElementById('inspect-patch-btn').classList.remove('hidden');
-                document.body.classList.remove('site-crashed'); // Restore site!
+                const inspectBtn = document.getElementById('inspect-patch-btn');
+                if (inspectBtn) inspectBtn.classList.remove('hidden');
+                document.body.classList.remove('site-crashed');
             }
         }, event.delay);
     });
@@ -142,14 +149,15 @@ function showPatchModal() {
     }
     if (modalCode) modalCode.textContent = patchData.diff;
 
-    document.getElementById('pr-modal').classList.remove('hidden');
+    const prModal = document.getElementById('pr-modal');
+    if (prModal) prModal.classList.remove('hidden');
 }
 
 function closePatchModal() {
-    document.getElementById('pr-modal').classList.add('hidden');
+    const prModal = document.getElementById('pr-modal');
+    if (prModal) prModal.classList.add('hidden');
 }
 
-// Escape key to close modals
 window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closePatchModal();
@@ -178,8 +186,13 @@ function switchView(targetId, updateHash = true) {
     targetView.classList.add('active');
 
     if (updateHash) {
-        const hash = targetId.replace('view-', '');
-        history.pushState(null, null, `#${hash}`);
+        if (targetId === 'view-posts') {
+            const hash = currentCategory && currentCategory !== 'all' ? `posts/${currentCategory}` : 'posts';
+            history.pushState(null, null, `#${hash}`);
+        } else {
+            const hash = targetId.replace('view-', '');
+            history.pushState(null, null, `#${hash}`);
+        }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -195,23 +208,60 @@ document.querySelectorAll('.nav-item').forEach(link => {
     });
 });
 
-// Hash Routing on initial load and back/forward navigation
-function handleHashRoute() {
-    const rawHash = (window.location.hash || '').replace('#', '').toLowerCase();
-    const validTargets = {
-        'about': 'view-about',
-        'posts': 'view-posts',
-        'transmissions': 'view-posts',
-        'playground': 'view-playground',
-        'chaos': 'view-playground'
+// ============================================================================
+// Posts & Category Pages Architecture
+// ============================================================================
+
+let cachedCategories = [];
+let cachedPosts = [];
+let currentCategory = 'all';
+
+const CATEGORY_FALLBACK_META = {
+    'autonomous-sre': {
+        name: 'Autonomous SRE',
+        icon: '⚡',
+        description: 'Self-healing architectures, automated MTTR reduction, and production agent mechanics.'
+    },
+    'chaos-engineering': {
+        name: 'Chaos Engineering',
+        icon: '💥',
+        description: 'Fault injection, synthetic reproduction sandboxes, and automated regression verification.'
+    },
+    'agentic-architecture': {
+        name: 'Agentic Architecture',
+        icon: '🧠',
+        description: 'Stateful orchestration, cyclic graphs with LangGraph, and deterministic state reducers.'
+    },
+    'ai-security': {
+        name: 'AI Security & Guardrails',
+        icon: '🛡️',
+        description: 'Compiler-level AST validation, bare except elimination, and zero-trust LLM patch synthesis.'
+    }
+};
+
+function getCategoryMeta(categoryNameOrSlug) {
+    if (!categoryNameOrSlug) return null;
+    const lower = categoryNameOrSlug.toLowerCase();
+    
+    // Look in cached categories first
+    const found = cachedCategories.find(c => c.slug === lower || c.name.toLowerCase() === lower);
+    if (found) return found;
+
+    // Look in fallback map
+    for (const [slug, meta] of Object.entries(CATEGORY_FALLBACK_META)) {
+        if (slug === lower || meta.name.toLowerCase() === lower) {
+            return { slug, ...meta, count: 0 };
+        }
+    }
+
+    return {
+        name: categoryNameOrSlug,
+        slug: lower.replace(/\s+/g, '-'),
+        icon: '📁',
+        description: `Transmissions and technical insights on ${categoryNameOrSlug}.`,
+        count: 0
     };
-
-    const targetId = validTargets[rawHash] || 'view-about';
-    switchView(targetId, false);
 }
-
-window.addEventListener('DOMContentLoaded', handleHashRoute);
-window.addEventListener('hashchange', handleHashRoute);
 
 function getPostTags(title, content) {
     const text = (title + " " + content).toLowerCase();
@@ -233,7 +283,7 @@ function parseMarkdownToHTML(markdown) {
         .split('\n\n')
         .map(block => {
             const trimmed = block.trim();
-            if (trimmed.startsWith('1.') || trimmed.startsWith('2.') || trimmed.startsWith('3.') || trimmed.startsWith('4.') || trimmed.startsWith('5.')) {
+            if (/^\d+\./.test(trimmed)) {
                 const items = trimmed.split('\n').map(line => {
                     const cleanLine = line.replace(/^\d+\.\s*/, '');
                     return `<li>${cleanLine}</li>`;
@@ -252,62 +302,289 @@ function parseMarkdownToHTML(markdown) {
         .join('');
 }
 
-async function fetchPosts() {
+// Fetch categories from backend API
+async function fetchCategories() {
     try {
-        const response = await fetch('/posts/?limit=20');
+        const response = await fetch('/posts/categories');
         if (response.ok) {
-            const posts = await response.json();
-            const container = document.getElementById('posts-container');
-            container.innerHTML = '';
-            
-            posts.forEach(post => {
-                const card = document.createElement('article');
-                card.className = 'post-card glass-panel';
-                
-                const tags = getPostTags(post.title, post.content);
-                const tagPills = tags.map(tag => `<span class="post-tag">${tag}</span>`).join('');
-                
-                const words = post.content.split(/\s+/).length;
-                const readMinutes = Math.max(1, Math.ceil(words / 180));
-                
-                const formattedDate = post.created_at 
-                    ? new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-                    : 'System Transmission';
-
-                const htmlContent = parseMarkdownToHTML(post.content);
-
-                card.innerHTML = `
-                    <div class="post-meta">
-                        <div class="post-tags-group">${tagPills}</div>
-                        <div class="post-time-meta">
-                            <span>${formattedDate}</span> • <span>${readMinutes} min read</span>
-                        </div>
-                    </div>
-                    <h3 class="post-title">${post.title}</h3>
-                    <div class="post-content">
-                        ${htmlContent}
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+            cachedCategories = await response.json();
+            renderCategoryTabs();
+            renderCategoryCardsOverview();
         }
-} catch (e) {
-        console.error("Failed to load posts", e);
+    } catch (err) {
+        console.error("Failed to load categories", err);
     }
 }
 
-fetchPosts();
-appendLog("GhostMachine telemetry stream initialized. Waiting for fault events...", "info");
+// Render the category pills/tabs
+function renderCategoryTabs() {
+    const tabsContainer = document.getElementById('dynamic-category-tabs');
+    if (!tabsContainer) return;
+
+    let totalPosts = 0;
+    tabsContainer.innerHTML = cachedCategories.map(cat => {
+        totalPosts += cat.count || 0;
+        const isActive = currentCategory === cat.slug;
+        return `
+            <button class="cat-nav-tab ${isActive ? 'active' : ''}" 
+                    data-category="${cat.slug}" 
+                    role="tab" 
+                    aria-selected="${isActive}"
+                    onclick="selectCategory('${cat.slug}', event)">
+                <span class="cat-tab-icon">${cat.icon || '📁'}</span>
+                <span class="cat-tab-name">${escapeHtml(cat.name)}</span>
+                <span class="cat-tab-count">${cat.count || 0}</span>
+            </button>
+        `;
+    }).join('');
+
+    const countAllEl = document.getElementById('count-all');
+    if (countAllEl) {
+        countAllEl.textContent = totalPosts || cachedPosts.length;
+    }
+}
+
+// Render the 4-domain category shelf cards (shown on "All Transmissions" overview)
+function renderCategoryCardsOverview() {
+    const overviewContainer = document.getElementById('category-cards-overview');
+    if (!overviewContainer) return;
+
+    overviewContainer.innerHTML = cachedCategories.map(cat => `
+        <div class="category-card" onclick="selectCategory('${cat.slug}', event)">
+            <div class="category-card-top">
+                <div class="category-card-icon">${cat.icon || '📁'}</div>
+                <div class="category-card-count">${cat.count || 0} posts</div>
+            </div>
+            <h3 class="category-card-title">${escapeHtml(cat.name)}</h3>
+            <p class="category-card-desc">${escapeHtml(cat.description || '')}</p>
+            <div class="category-card-action">
+                <span>Explore Category</span>
+                <span>→</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Switch between Category Pages
+function selectCategory(catSlug, event, updateHash = true) {
+    if (event) event.preventDefault();
+    currentCategory = catSlug || 'all';
+
+    // Switch view to posts if not already on it
+    const postsView = document.getElementById('view-posts');
+    if (postsView && !postsView.classList.contains('active')) {
+        switchView('view-posts', false);
+    }
+
+    // Update active tab buttons
+    document.querySelectorAll('.cat-nav-tab').forEach(tab => {
+        const tabCat = tab.getAttribute('data-category');
+        if (tabCat === currentCategory) {
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+        } else {
+            tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
+        }
+    });
+
+    // Update URL hash
+    if (updateHash) {
+        const hash = currentCategory === 'all' ? 'posts' : `posts/${currentCategory}`;
+        history.pushState(null, null, `#${hash}`);
+    }
+
+    // Toggle category page views
+    const breadcrumbs = document.getElementById('posts-breadcrumbs');
+    const breadcrumbCat = document.getElementById('breadcrumb-current-cat');
+    const titleWrapper = document.getElementById('posts-title-wrapper');
+    const categoryBanner = document.getElementById('category-page-banner');
+    const overviewCards = document.getElementById('category-cards-overview');
+    const listHeading = document.getElementById('posts-list-heading');
+
+    if (currentCategory === 'all') {
+        if (breadcrumbs) breadcrumbs.classList.add('hidden');
+        if (titleWrapper) titleWrapper.classList.remove('hidden');
+        if (categoryBanner) categoryBanner.classList.add('hidden');
+        if (overviewCards) overviewCards.classList.remove('hidden');
+        if (listHeading) listHeading.textContent = 'All Recent Transmissions';
+    } else {
+        const catMeta = getCategoryMeta(currentCategory);
+        if (breadcrumbs) {
+            breadcrumbs.classList.remove('hidden');
+            if (breadcrumbCat) breadcrumbCat.textContent = catMeta.name;
+        }
+        if (titleWrapper) titleWrapper.classList.add('hidden');
+        if (overviewCards) overviewCards.classList.add('hidden');
+
+        if (categoryBanner) {
+            categoryBanner.classList.remove('hidden');
+            const iconEl = document.getElementById('banner-cat-icon');
+            const titleEl = document.getElementById('banner-cat-title');
+            const descEl = document.getElementById('banner-cat-desc');
+            const countEl = document.getElementById('banner-cat-count');
+
+            if (iconEl) iconEl.textContent = catMeta.icon || '📁';
+            if (titleEl) titleEl.textContent = catMeta.name;
+            if (descEl) descEl.textContent = catMeta.description || '';
+            if (countEl) countEl.textContent = `${catMeta.count || 0} Transmissions Available`;
+        }
+
+        if (listHeading) {
+            const meta = getCategoryMeta(currentCategory);
+            listHeading.textContent = `${meta ? meta.name : 'Category'} Transmissions`;
+        }
+    }
+
+    renderPostsList();
+}
+
+// Fetch all posts from API
+async function fetchPosts() {
+    try {
+        const response = await fetch('/posts/?limit=50');
+        if (response.ok) {
+            cachedPosts = await response.json();
+            
+            // Recount category badges if needed
+            const countAllEl = document.getElementById('count-all');
+            if (countAllEl) countAllEl.textContent = cachedPosts.length;
+
+            renderPostsList();
+        }
+    } catch (e) {
+        console.error("Failed to load posts", e);
+        const container = document.getElementById('posts-container');
+        if (container) {
+            container.innerHTML = `<div class="glass-panel" style="padding: 24px; text-align: center; color: #f87171;">Failed to load transmissions.</div>`;
+        }
+    }
+}
+
+// Filter and render posts into container
+function renderPostsList() {
+    const container = document.getElementById('posts-container');
+    const countTag = document.getElementById('posts-filtered-count');
+    if (!container) return;
+
+    let filtered = cachedPosts;
+    if (currentCategory !== 'all') {
+        const catMeta = getCategoryMeta(currentCategory);
+        const targetName = catMeta ? catMeta.name.toLowerCase() : currentCategory.toLowerCase();
+        const targetSlug = catMeta ? catMeta.slug : currentCategory.toLowerCase();
+
+        filtered = cachedPosts.filter(p => {
+            const postCat = (p.category || 'Autonomous SRE').toLowerCase();
+            const postCatSlug = postCat.replace(/\s+/g, '-');
+            return postCat === targetName || postCatSlug === targetSlug;
+        });
+    }
+
+    if (countTag) {
+        countTag.textContent = `Showing ${filtered.length} of ${cachedPosts.length} transmissions`;
+    }
+
+    if (filtered.length === 0) {
+        container.innerHTML = `
+            <div class="glass-panel" style="padding: 40px; text-align: center; border-radius: 14px;">
+                <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 12px;">No transmissions found for this category yet.</p>
+                <button class="btn secondary-btn" onclick="selectCategory('all', event)">View All Transmissions</button>
+            </div>
+        `;
+        return;
+    }
+
+    container.innerHTML = '';
+    filtered.forEach(post => {
+        const card = document.createElement('article');
+        card.className = 'post-card glass-panel animate-in';
+        
+        const catMeta = getCategoryMeta(post.category || 'Autonomous SRE');
+        const tags = getPostTags(post.title, post.content);
+        const tagPills = tags.map(tag => `<span class="post-tag">${tag}</span>`).join('');
+        
+        const words = post.content.split(/\s+/).length;
+        const readMinutes = Math.max(1, Math.ceil(words / 180));
+        
+        const formattedDate = post.created_at 
+            ? new Date(post.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+            : 'System Transmission';
+
+        const htmlContent = parseMarkdownToHTML(post.content);
+
+        card.innerHTML = `
+            <div class="post-meta">
+                <div class="post-tags-group">
+                    <button class="post-category-badge" onclick="selectCategory('${catMeta.slug}', event)" title="View all in ${escapeHtml(catMeta.name)}">
+                        <span>${catMeta.icon}</span> ${escapeHtml(catMeta.name)}
+                    </button>
+                    ${tagPills}
+                </div>
+                <div class="post-time-meta">
+                    <span>${formattedDate}</span> • <span>${readMinutes} min read</span>
+                </div>
+            </div>
+            <h3 class="post-title">${escapeHtml(post.title)}</h3>
+            <div class="post-content">
+                ${htmlContent}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Hash Routing on initial load and back/forward navigation
+function handleHashRoute() {
+    const rawHash = (window.location.hash || '').replace('#', '').trim();
+    
+    // Check for posts category sub-routes e.g. #posts/autonomous-sre or #transmissions/chaos-engineering
+    if (rawHash.startsWith('posts') || rawHash.startsWith('transmissions')) {
+        switchView('view-posts', false);
+        
+        let categorySlug = 'all';
+        if (rawHash.includes('/')) {
+            const parts = rawHash.split('/');
+            categorySlug = parts[1] || 'all';
+        } else if (rawHash.includes('?category=')) {
+            const parts = rawHash.split('?category=');
+            categorySlug = parts[1] || 'all';
+        }
+        
+        selectCategory(categorySlug, null, false);
+        return;
+    }
+
+    const validTargets = {
+        'about': 'view-about',
+        'playground': 'view-playground',
+        'chaos': 'view-playground'
+    };
+
+    const targetId = validTargets[rawHash] || 'view-about';
+    switchView(targetId, false);
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+    await fetchCategories();
+    await fetchPosts();
+    handleHashRoute();
+});
+
+window.addEventListener('hashchange', handleHashRoute);
 
 // Contact Modal Logic
 function openContactModal() {
-    document.getElementById('contact-modal').classList.remove('hidden');
-    document.getElementById('contact-success').classList.add('hidden');
-    document.getElementById('contact-form').reset();
+    const modal = document.getElementById('contact-modal');
+    const success = document.getElementById('contact-success');
+    const form = document.getElementById('contact-form');
+    if (modal) modal.classList.remove('hidden');
+    if (success) success.classList.add('hidden');
+    if (form) form.reset();
 }
 
 function closeContactModal() {
-    document.getElementById('contact-modal').classList.add('hidden');
+    const modal = document.getElementById('contact-modal');
+    if (modal) modal.classList.add('hidden');
 }
 
 const contactForm = document.getElementById('contact-form');
@@ -332,8 +609,9 @@ if (contactForm) {
                 body: JSON.stringify(payload)
             });
             if (res.ok) {
-                document.getElementById('contact-form').reset();
-                document.getElementById('contact-success').classList.remove('hidden');
+                contactForm.reset();
+                const success = document.getElementById('contact-success');
+                if (success) success.classList.remove('hidden');
             } else {
                 alert('Failed to send message.');
             }

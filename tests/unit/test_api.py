@@ -113,3 +113,28 @@ async def test_sitemap_xml():
     assert response.status_code == 200
     assert "https://tim-ohagan.com/" in response.text
     assert "application/xml" in response.headers.get("content-type", "")
+
+@pytest.mark.asyncio
+async def test_posts_categories():
+    """Verify that /posts/categories returns status 200 and a list of categories."""
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        response = await ac.get("/posts/categories")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    assert len(data) >= 4
+    slugs = [cat["slug"] for cat in data]
+    assert "autonomous-sre" in slugs
+    assert "chaos-engineering" in slugs
+
+@pytest.mark.asyncio
+async def test_posts_list_with_category():
+    """Verify that /posts/ supports filtering by category slug."""
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        response = await ac.get("/posts/?category=autonomous-sre")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    for post in data:
+        assert post["category"] == "Autonomous SRE"
+

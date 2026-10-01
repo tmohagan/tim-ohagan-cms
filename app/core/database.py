@@ -8,7 +8,7 @@ DATABASE_URL = os.environ.get(
     "postgresql+asyncpg://cms_user:cms_password@cms-postgres:5432/cms_db"
 )
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL, echo=True, pool_pre_ping=True)
 AsyncSessionLocal = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 Base = declarative_base()

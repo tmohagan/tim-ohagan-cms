@@ -6,6 +6,7 @@ from sqlalchemy.future import select
 POSTS_DATA = [
     {
         "title": "Introducing GhostMachine.dev",
+        "category": "Autonomous SRE",
         "content": """Imagine you run a website, and in the middle of the night, something breaks. Traditionally, an on-call engineer gets paged, wakes up, searches through server logs to figure out what went wrong, writes a bug fix, tests it, and pushes the repair live—a process that can easily take hours.
 
 This project builds an automated "AI mechanic" designed to diagnose and repair software bugs on its own in under two minutes.
@@ -14,6 +15,7 @@ GhostMachine is an external autonomous SRE control plane that connects to target
     },
     {
         "title": "The Deterministic Remediation Workflow",
+        "category": "Chaos Engineering",
         "content": """GhostMachine relies on a highly structured LangGraph state machine to ensure safe and deterministic code repairs:
 
 1. **Catch the Error**: The target website catches the crash and alerts GhostMachine via an OpenTelemetry webhook.
@@ -24,6 +26,7 @@ GhostMachine is an external autonomous SRE control plane that connects to target
     },
     {
         "title": "AST Static Guardrails: Zero-Trust Code Synthesis",
+        "category": "AI Security & Guardrails",
         "content": """When giving an LLM authority to propose code changes in an automated pipeline, prompt engineering is not enough. LLMs are prone to taking shortcuts—such as wrapping a crashing block in a bare `except:` block, which suppresses the symptom while corrupting application state downstream.
 
 To enforce zero-trust security, GhostMachine integrates a compiler-level Abstract Syntax Tree (AST) validation node using Python's native `ast` module.
@@ -37,6 +40,7 @@ By validating AST nodes mathematically rather than relying on LLM self-policing,
     },
     {
         "title": "Stateful Orchestration with LangGraph: Why Cyclic Graphs Beat Linear Scripts",
+        "category": "Agentic Architecture",
         "content": """Many early AI agent projects rely either on linear procedural scripts or open-ended ReAct loops. In autonomous SRE and infrastructure repair, both approaches fail: linear scripts cannot intelligently retry failed test runs, while unstructured loops frequently hallucinate into infinite execution cycles.
 
 GhostMachine solves this by architecting the incident pipeline as a typed **LangGraph StateGraph**:
@@ -49,6 +53,7 @@ This state-machine architecture provides the reliability required to automate ti
     },
     {
         "title": "The Economics of Autonomous SRE: Slashing MTTR from 45 Minutes to 52 Seconds",
+        "category": "Autonomous SRE",
         "content": """Engineering on-call rotations are notorious for alert fatigue, context switching, and interrupted sleep. A routine tier-1 incident—such as an unhandled null pointer or schema validation error—typically costs an enterprise:
 
 • **45 to 60 minutes** of human investigation, git archaeology, and local environment reproduction.
@@ -61,6 +66,44 @@ By automating the diagnostic and remediation cycle, GhostMachine produces radica
 • **Net Operational Savings**: **+99.94%** per incident resolved.
 
 Crucially, GhostMachine does not replace human engineers—it acts as an automated mechanic. By delivering a validated patch, an ephemeral test suite, and an automated post-mortem directly to a GitHub Pull Request, engineers simply review and merge with high confidence."""
+    },
+    {
+        "title": "Synthetic Failure Injection: Reproducing Docker Sandboxes in 30 Seconds",
+        "category": "Chaos Engineering",
+        "content": """When a software bug crashes production, reproducing it locally often takes longer than fixing the bug itself. Developers wrestle with environment variables, out-of-sync database fixtures, and missing dependencies.
+
+GhostMachine inverts this through **Ephemeral Reproducing Sandboxes**:
+
+1. **Span-to-Test Synthesis**: When an error trace hits the control plane, the agent writes an isolated pytest test case encapsulating the exact crashing call stack and parameters.
+2. **Hermetic Docker Sandbox**: The test is dispatched into a lightweight, stripped-down Docker runtime container. GhostMachine executes the test and expects a reproduction exit code.
+3. **Deterministic Verification**: Only when the reproducing test fails as expected does the patch generation cycle commence.
+
+This guarantees that every bug remediation begins with empirical, reproducible proof."""
+    },
+    {
+        "title": "Prompt Defense vs AST Inspection: Why Deterministic Compilers Win",
+        "category": "AI Security & Guardrails",
+        "content": """Many teams attempt to safeguard LLM outputs by appending instructions like: *"Do not execute shell commands or remove security checks."* 
+
+In automated remediation environments where code modifications are applied without human intervention, natural language guardrails fail under adversarial prompting and latent hallucination.
+
+Instead of trusting the model, GhostMachine parses every generated git diff through a deterministic Python AST visitor:
+- **Zero Hallucination Tolerance**: If a node contains an unapproved import (e.g. `import os; os.system(...)`), the patch is rejected immediately at compile time.
+- **Syntactic Invariants**: Guardrails enforce strict typing and prohibit bare exceptions that obscure downstream failures.
+- **Mathematical Guarantees**: A compiler either parses the AST safely or aborts. No prompt drift can bypass syntactic validation."""
+    },
+    {
+        "title": "Multi-Agent Handshakes: Coordinating SRE Diagnostic & Patch Subagents",
+        "category": "Agentic Architecture",
+        "content": """Monolithic agent architectures that attempt to diagnose, code, test, and package fixes in a single prompt often suffer from context pollution and reasoning degradation.
+
+In GhostMachine, we partition the autonomous SRE lifecycle across specialized subagents communicating via structured graph state:
+1. **Diagnostic Specialist**: Focuses strictly on root cause analysis, stack frame parsing, and generating reproduction tests.
+2. **Patch Architect**: Operates with a minimal context window containing only the failing test and target source files, generating precise unified diffs.
+3. **Safety Auditor**: Independent AST static verification agent that approves or rejects diffs with specific violation diagnostics.
+4. **Release Officer**: Packages pull requests, computes MTTR statistics, and updates the incident ledger.
+
+By modularizing responsibilities, each agent executes with tight token bounds and high determinism."""
     }
 ]
 
@@ -90,14 +133,16 @@ async def seed():
             if not existing_post:
                 new_post = Post(
                     title=post_info["title"],
+                    category=post_info.get("category", "Autonomous SRE"),
                     content=post_info["content"],
                     author_id=tim_profile.id
                 )
                 session.add(new_post)
-                print(f"Added post: {post_info['title']}")
+                print(f"Added post: {post_info['title']} [{post_info.get('category')}]")
             else:
                 existing_post.content = post_info["content"]
-                print(f"Updated post: {post_info['title']}")
+                existing_post.category = post_info.get("category", "Autonomous SRE")
+                print(f"Updated post: {post_info['title']} [{post_info.get('category')}]")
         
         await session.commit()
         print("Database seeding completed successfully.")
