@@ -977,7 +977,7 @@ html.haunted-glitch::after {
     transform: translate(-50%, -50%);
     font-size: clamp(1rem, 8vw, 4rem);
     font-family: monospace;
-    color: rgba(255, 176, 0, 0.8);
+    color: rgba(51, 255, 0, 0.8);
     z-index: 99999;
     pointer-events: none;
     text-shadow: 2px 0 0 red, -2px 0 0 blue;
@@ -1512,15 +1512,15 @@ body.site-crashed::after {
 /* ========================================================== */
 body.theme-eurisko-1993 {
     --bg-dark: #050505;
-    --text-primary: #ffb000;
-    --text-secondary: #ff9c00;
-    --accent-1: #ffb000;
-    --accent-2: #ffb000;
+    --text-primary: #33ff00;
+    --text-secondary: #00cc00;
+    --accent-1: #33ff00;
+    --accent-2: #33ff00;
     --card-bg: transparent;
     font-family: "Courier New", Courier, monospace !important;
     background-color: var(--bg-dark);
     color: var(--text-primary);
-    text-shadow: 0 0 4px #ffb000, 0 0 10px rgba(255, 176, 0, 0.4);
+    text-shadow: 0 0 4px #33ff00, 0 0 10px rgba(51, 255, 0, 0.4);
     box-shadow: inset 0 0 80px rgba(0,0,0,0.9);
 }
 
