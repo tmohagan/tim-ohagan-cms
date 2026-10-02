@@ -1451,29 +1451,122 @@ footer {
 
 /* Site Crash Effects */
 body.site-crashed {
-    animation: criticalShake 0.5s cubic-bezier(.36,.07,.19,.97) both infinite;
+    animation: hollywoodGlitch 3s infinite linear alternate-reverse;
     position: relative;
+    overflow-x: hidden;
 }
+
+body.site-crashed::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9998;
+    pointer-events: none;
+    animation: tvGlitchOverlay 2.5s infinite steps(2, end);
+}
+
 body.site-crashed::after {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(0deg, rgba(220, 38, 38, 0.1), rgba(220, 38, 38, 0.1) 1px, transparent 1px, transparent 2px);
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 3px);
     z-index: 9999;
     pointer-events: none;
-    animation: staticFlicker 0.15s infinite;
+    animation: staticFlicker 0.1s infinite;
 }
 
-@keyframes criticalShake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
+@keyframes hollywoodGlitch {
+    0%, 14% { transform: translate(0, 0) skew(0deg); filter: none; }
+    15% { transform: translate(-2px, 1px) skew(1deg); filter: contrast(120%); }
+    16%, 39% { transform: translate(0, 0) skew(0deg); filter: none; }
+    40% { transform: translate(4px, -2px) skew(-2deg); filter: hue-rotate(45deg); }
+    41% { transform: translate(-4px, 2px) skew(2deg); filter: hue-rotate(-45deg); }
+    42%, 79% { transform: translate(0, 0) skew(0deg); filter: none; }
+    80% { transform: translate(2px, 0) skew(0deg); filter: invert(10%); }
+    81%, 100% { transform: translate(0, 0) skew(0deg); filter: none; }
+}
+
+@keyframes tvGlitchOverlay {
+    0%, 14% { backdrop-filter: none; background: transparent; }
+    15% { backdrop-filter: blur(2px) contrast(150%); background: rgba(255, 0, 0, 0.05); }
+    16%, 39% { backdrop-filter: none; background: transparent; }
+    40% { backdrop-filter: hue-rotate(90deg) invert(20%); background: rgba(0, 255, 255, 0.1); }
+    41% { backdrop-filter: hue-rotate(-90deg) contrast(200%); background: rgba(255, 0, 255, 0.1); }
+    42%, 79% { backdrop-filter: none; background: transparent; }
+    80% { backdrop-filter: saturate(300%) sepia(50%); background: rgba(255, 255, 0, 0.05); }
+    81%, 100% { backdrop-filter: none; background: transparent; }
 }
 
 @keyframes staticFlicker {
-    0% { opacity: 0.8; }
-    50% { opacity: 0.3; }
-    100% { opacity: 0.9; }
+    0% { opacity: 0.8; transform: translateY(0); }
+    50% { opacity: 0.3; transform: translateY(1px); }
+    100% { opacity: 0.9; transform: translateY(-1px); }
 }
 
+
+
+/* ========================================================== */
+/* MOZART'S GHOST - THE NET (1995) EASTER EGG                 */
+/* ========================================================== */
+
+body.theme-the-net .ambient-background,
+body.theme-the-net nav,
+body.theme-the-net main,
+body.theme-the-net footer {
+    animation: theNetGlitch 2.5s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes theNetGlitch {
+    0% { filter: invert(0); transform: skewX(0deg) translateX(0); opacity: 1; }
+    10% { filter: invert(100%); transform: skewX(20deg) translateX(-20px); opacity: 1; }
+    20% { filter: invert(0); transform: skewX(-15deg) translateX(15px); opacity: 1; }
+    30% { filter: blur(2px) invert(100%); transform: skewX(10deg) translateX(-10px); opacity: 1; }
+    40% { filter: invert(0); transform: skewX(-30deg) translateX(30px); opacity: 1; }
+    50% { filter: blur(5px) invert(100%) hue-rotate(90deg); transform: skewX(45deg) scaleY(1.1); opacity: 1; }
+    60% { filter: invert(0); transform: skewX(-45deg) scaleY(0.9); opacity: 1; }
+    70% { filter: blur(10px) invert(100%); transform: skewX(20deg) translateX(-50px); opacity: 1; }
+    80% { filter: invert(0); transform: skewX(-10deg) translateX(10px); opacity: 1; }
+    90% { filter: blur(20px) invert(100%); transform: skewX(60deg) scale(1.5); opacity: 0.5; }
+    100% { filter: invert(100%); transform: skewX(0deg) scale(0); opacity: 0; }
+}
+
+#praetorian-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #000;
+    color: #ff0000;
+    z-index: 999999;
+}
+
+#praetorian-overlay .praetorian-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(2rem, 8vw, 6rem);
+    font-family: monospace;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    opacity: 0;
+    animation: revealPraetorians 2s forwards;
+    text-align: center;
+}
+
+#praetorian-overlay .scanlines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) 2px, transparent 2px, transparent 4px);
+    pointer-events: none;
+    animation: praetorianScanlines 10s linear infinite;
+}
+
+@keyframes revealPraetorians {
+    0% { opacity: 0; letter-spacing: -10px; }
+    50% { opacity: 1; letter-spacing: 5px; }
+    100% { opacity: 1; letter-spacing: 2px; }
+}
+
+@keyframes praetorianScanlines {
+    from { background-position: 0 0; }
+    to { background-position: 0 100vh; }
+}

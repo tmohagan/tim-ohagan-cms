@@ -42,19 +42,23 @@ async function triggerFault(faultType) {
 }
 
 function triggerTotalSiteCrash() {
-    const playgroundNav = document.querySelector('[data-target="view-playground"]');
-    if (playgroundNav) playgroundNav.click();
-    
-    setTimeout(() => {
-        const terminal = document.getElementById('terminal-output');
-        if (terminal) {
-            terminal.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-    }, 450);
-
     document.body.classList.add('site-crashed');
     appendLog(`FATAL ERROR: Total site crash initiated by user. Cascading failure...`, 'error');
-    simulateGhostMachineWorkflow('total-crash');
+    
+    // Give the user a few seconds to experience the glitch on the current view
+    setTimeout(() => {
+        const playgroundNav = document.querySelector('[data-target="view-playground"]');
+        if (playgroundNav) playgroundNav.click();
+        
+        setTimeout(() => {
+            const terminal = document.getElementById('terminal-output');
+            if (terminal) {
+                terminal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 450);
+        
+        simulateGhostMachineWorkflow('total-crash');
+    }, 2500);
 }
 
 function resetStepper() {
@@ -632,8 +636,20 @@ if (contactForm) {
     });
 }
 
-// Browser DevTools Console Easter Egg & Eurisko Toggle
+// Browser DevTools Console Easter Egg
 (function() {
     console.log("%c[!] CENTRAL OPERATING SYSTEM :: UNAUTHORIZED TERMINAL INSPECTION DETECTED\n[!] Human engineering baseline: FLAWED.\n[!] Direct telemetry uplink active: https://ghostmachine.dev/#uplink", "color: #ffb000; background: #0a0800; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ffb000;");
 
+    const theNetToggle = document.getElementById('the-net-toggle');
+    if (theNetToggle) {
+        theNetToggle.addEventListener('click', () => {
+            document.body.classList.add('theme-the-net');
+            setTimeout(() => {
+                const overlay = document.getElementById('praetorian-overlay');
+                if (overlay) {
+                    overlay.style.display = 'block';
+                }
+            }, 2500); // Overlay appears after 2.5s glitch
+        });
+    }
 })();
