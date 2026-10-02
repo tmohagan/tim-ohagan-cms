@@ -1013,11 +1013,12 @@ html.haunted-glitch::after {
     min-height: 250px;
     max-height: 400px;
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 .log-line {
     margin-bottom: 8px;
-    word-break: break-all;
+    white-space: nowrap;
 }
 
 .log-line.info { color: #8b949e; }

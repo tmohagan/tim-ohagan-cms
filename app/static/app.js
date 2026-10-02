@@ -50,7 +50,7 @@ function triggerTotalSiteCrash() {
         if (terminal) {
             terminal.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-    }, 100);
+    }, 450);
 
     document.body.classList.add('site-crashed');
     appendLog(`FATAL ERROR: Total site crash initiated by user. Cascading failure...`, 'error');
