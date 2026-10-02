@@ -45,6 +45,13 @@ function triggerTotalSiteCrash() {
     const playgroundNav = document.querySelector('[data-target="view-playground"]');
     if (playgroundNav) playgroundNav.click();
     
+    setTimeout(() => {
+        const terminal = document.getElementById('terminal-output');
+        if (terminal) {
+            terminal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 100);
+
     document.body.classList.add('site-crashed');
     appendLog(`FATAL ERROR: Total site crash initiated by user. Cascading failure...`, 'error');
     simulateGhostMachineWorkflow('total-crash');
