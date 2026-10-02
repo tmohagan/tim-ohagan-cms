@@ -632,9 +632,9 @@ if (contactForm) {
     const euriskoToggle = document.getElementById('eurisko-toggle');
     if (euriskoToggle) {
         euriskoToggle.addEventListener('click', () => {
-            document.body.classList.add('haunted-glitch');
+            document.documentElement.classList.add('haunted-glitch');
             setTimeout(() => {
-                document.body.classList.remove('haunted-glitch');
+                document.documentElement.classList.remove('haunted-glitch');
                 document.body.classList.toggle('theme-eurisko-1993');
             }, 3000);
         });

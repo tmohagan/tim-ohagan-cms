@@ -966,10 +966,10 @@ pre {
     100% { transform: translate(0) }
 }
 
-body.haunted-glitch {
+html.haunted-glitch body {
     animation: chromaticAberration 0.1s infinite, CRT_Shake 0.2s infinite !important;
 }
-body.haunted-glitch::after {
+html.haunted-glitch::after {
     content: "COS_DAEMON_ACTIVE";
     position: fixed;
     top: 50%;
