@@ -1572,9 +1572,19 @@ body.theme-the-net footer {
 }
 
 .quick-glitch {
-    animation: textGlitch 0.2s infinite alternate !important;
+    opacity: 1 !important;
+    animation: textGlitchPraetorian 0.1s infinite alternate !important;
     color: #ff0000;
-    text-shadow: 2px 0 0 blue, -2px 0 0 yellow !important;
+    text-shadow: 3px 0 0 blue, -3px 0 0 yellow !important;
+}
+
+@keyframes textGlitchPraetorian {
+    0% { transform: translate(-50%, -50%) skew(0deg); }
+    20% { transform: translate(calc(-50% - 3px), calc(-50% + 2px)) skew(2deg); }
+    40% { transform: translate(calc(-50% - 1px), calc(-50% - 1px)) skew(-1deg); }
+    60% { transform: translate(calc(-50% + 3px), calc(-50% + 1px)) skew(3deg); }
+    80% { transform: translate(calc(-50% + 1px), calc(-50% - 2px)) skew(-2deg); }
+    100% { transform: translate(-50%, -50%) skew(0deg); }
 }
 
 #praetorian-overlay {
