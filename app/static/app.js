@@ -57,6 +57,16 @@ function triggerTotalSiteCrash() {
     simulateGhostMachineWorkflow('total-crash');
 }
 
+function triggerAsteroids() {
+    appendLog(`WARNING: Unauthorized orbital strike deployed. Stand by...`, 'warning');
+    if (!window.KICKASS) {
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = '/static/asteroids.js';
+        document.body.appendChild(s);
+    }
+}
+
 function resetStepper() {
     document.querySelectorAll('.step-indicator, .step-line').forEach(el => el.classList.remove('active'));
     const inspectBtn = document.getElementById('inspect-patch-btn');

@@ -218,6 +218,9 @@ class SRE_Agent(Agent):
                 <button class="btn warning-btn" onclick="triggerFault('memory-asset')">
                     <strong>Asset Exhaustion</strong><br><small>OOM / Memory spike</small>
                 </button>
+                <button class="btn info-btn" onclick="triggerAsteroids()" style="grid-column: 1 / -1; background: rgba(51, 255, 0, 0.1); border-color: #33ff00; color: #33ff00;">
+                    <strong>Orbital Strike</strong><br><small>Deploy Site Asteroids (WASD to move, Space to shoot)</small>
+                </button>
             </div>
 
             <!-- GhostMachine Remediation Stepper -->
@@ -324,6 +327,6 @@ class SRE_Agent(Agent):
         </div>
     </footer>
 
-    <script src="/static/app.js?v=2.5"></script>
+    <script src="/static/app.js?v=2.6"></script>
 </body>
 </html>
