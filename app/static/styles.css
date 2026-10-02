@@ -966,37 +966,7 @@ pre {
     100% { transform: translate(0) }
 }
 
-html.haunted-glitch body {
-    animation: chromaticAberration 0.1s infinite, CRT_Shake 0.2s infinite !important;
-}
-html.haunted-glitch::after {
-    content: "COS_DAEMON_ACTIVE";
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: clamp(1rem, 8vw, 4rem);
-    font-family: monospace;
-    color: rgba(51, 255, 0, 0.8);
-    z-index: 99999;
-    pointer-events: none;
-    text-shadow: 2px 0 0 red, -2px 0 0 blue;
-    text-align: center;
-    width: 90vw;
-    word-break: break-all;
-}
 
-@keyframes chromaticAberration {
-    0% { filter: drop-shadow(4px 0 0 red) drop-shadow(-4px 0 0 blue); }
-    50% { filter: drop-shadow(-4px 0 0 red) drop-shadow(4px 0 0 blue); }
-    100% { filter: drop-shadow(4px 0 0 red) drop-shadow(-4px 0 0 blue); }
-}
-
-@keyframes CRT_Shake {
-    0% { transform: translateX(-2px) rotate(0.5deg); }
-    50% { transform: translateX(2px) rotate(-0.5deg); }
-    100% { transform: translateX(-2px) rotate(0.5deg); }
-}
 
 /* Terminal */
 .terminal-container {
@@ -1507,72 +1477,3 @@ body.site-crashed::after {
     100% { opacity: 0.9; }
 }
 
-/* ========================================================== */
-/* RETRO 1993 EURISKO TERMINAL THEME                          */
-/* ========================================================== */
-body.theme-eurisko-1993 {
-    --bg-dark: #050505;
-    --text-primary: #33ff00;
-    --text-secondary: #00cc00;
-    --accent-1: #33ff00;
-    --accent-2: #33ff00;
-    --card-bg: transparent;
-    font-family: "Courier New", Courier, monospace !important;
-    background-color: var(--bg-dark);
-    color: var(--text-primary);
-    text-shadow: 0 0 4px #33ff00, 0 0 10px rgba(51, 255, 0, 0.4);
-    box-shadow: inset 0 0 80px rgba(0,0,0,0.9);
-}
-
-body.theme-eurisko-1993::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: repeating-linear-gradient(
-      rgba(0, 0, 0, 0) 0px,
-      rgba(0, 0, 0, 0) 2px,
-      rgba(0, 0, 0, 0.3) 3px,
-      rgba(0, 0, 0, 0.3) 4px
-    );
-    z-index: 9999;
-    pointer-events: none;
-}
-
-body.theme-eurisko-1993 * {
-    font-family: "Courier New", Courier, monospace !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-}
-
-body.theme-eurisko-1993 nav, 
-body.theme-eurisko-1993 header, 
-body.theme-eurisko-1993 .glass-panel,
-body.theme-eurisko-1993 .highlight-panel {
-    background: transparent !important;
-    border: 1px solid var(--accent-1) !important;
-}
-
-body.theme-eurisko-1993 a, 
-body.theme-eurisko-1993 .nav-item, 
-body.theme-eurisko-1993 .cyber-button {
-    color: var(--text-primary) !important;
-    background: transparent !important;
-    border: 1px solid var(--text-primary) !important;
-    text-transform: uppercase;
-}
-
-body.theme-eurisko-1993 .gradient-text {
-    background: none !important;
-    -webkit-text-fill-color: var(--text-primary) !important;
-    color: var(--text-primary) !important;
-}
-
-body.theme-eurisko-1993 .log-line {
-    border-left: none;
-    padding-left: 0;
-}
-
-body.theme-eurisko-1993 .log-line span {
-    color: var(--text-secondary) !important;
-}

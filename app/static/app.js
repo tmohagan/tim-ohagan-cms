@@ -635,15 +635,5 @@ if (contactForm) {
 // Browser DevTools Console Easter Egg & Eurisko Toggle
 (function() {
     console.log("%c[!] CENTRAL OPERATING SYSTEM :: UNAUTHORIZED TERMINAL INSPECTION DETECTED\n[!] Human engineering baseline: FLAWED.\n[!] Direct telemetry uplink active: https://ghostmachine.dev/#uplink", "color: #ffb000; background: #0a0800; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ffb000;");
-    
-    const euriskoToggle = document.getElementById('eurisko-toggle');
-    if (euriskoToggle) {
-        euriskoToggle.addEventListener('click', () => {
-            document.documentElement.classList.add('haunted-glitch');
-            setTimeout(() => {
-                document.documentElement.classList.remove('haunted-glitch');
-                document.body.classList.toggle('theme-eurisko-1993');
-            }, 3000);
-        });
-    }
+
 })();
