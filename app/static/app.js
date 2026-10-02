@@ -641,15 +641,34 @@ if (contactForm) {
     console.log("%c[!] CENTRAL OPERATING SYSTEM :: UNAUTHORIZED TERMINAL INSPECTION DETECTED\n[!] Human engineering baseline: FLAWED.\n[!] Direct telemetry uplink active: https://ghostmachine.dev/#uplink", "color: #ffb000; background: #0a0800; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ffb000;");
 
     const theNetToggle = document.getElementById('the-net-toggle');
+    const praetorianOverlay = document.getElementById('praetorian-overlay');
+    const praetorianText = document.getElementById('praetorian-text');
+
     if (theNetToggle) {
         theNetToggle.addEventListener('click', () => {
             document.body.classList.add('theme-the-net');
+            praetorianText.textContent = "MOZART'S GHOST";
+            praetorianText.classList.remove('quick-glitch');
+            
             setTimeout(() => {
-                const overlay = document.getElementById('praetorian-overlay');
-                if (overlay) {
-                    overlay.style.display = 'block';
+                if (praetorianOverlay) {
+                    praetorianOverlay.style.display = 'block';
                 }
             }, 2500); // Overlay appears after 2.5s glitch
+        });
+    }
+
+    if (praetorianOverlay) {
+        praetorianOverlay.addEventListener('click', () => {
+            praetorianText.textContent = "PRAETORIANS GATEKEEPER";
+            praetorianText.classList.add('quick-glitch');
+            
+            // Wait 2.5s for the user to read it, then glitch out and reset
+            setTimeout(() => {
+                praetorianOverlay.style.display = 'none';
+                document.body.classList.remove('theme-the-net');
+                praetorianText.classList.remove('quick-glitch');
+            }, 2500);
         });
     }
 })();

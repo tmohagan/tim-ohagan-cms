@@ -1570,3 +1570,13 @@ body.theme-the-net footer {
     from { background-position: 0 0; }
     to { background-position: 0 100vh; }
 }
+
+.quick-glitch {
+    animation: textGlitch 0.2s infinite alternate !important;
+    color: #ff0000;
+    text-shadow: 2px 0 0 blue, -2px 0 0 yellow !important;
+}
+
+#praetorian-overlay {
+    cursor: pointer;
+}
