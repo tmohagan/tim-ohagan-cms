@@ -113,12 +113,14 @@ async def seed_production_db(
     if not tim_profile:
         tim_profile = Profile(
             name="Tim OHagan",
-            bio="Software Agentic Engineer specializing in AI-driven autonomous Site Reliability Engineering.",
+            bio="Forward Deployment Engineer specializing in AI-driven autonomous Site Reliability Engineering.",
             github_url="https://github.com/tmohagan"
         )
         db.add(tim_profile)
         await db.commit()
         await db.refresh(tim_profile)
+    else:
+        tim_profile.bio = "Forward Deployment Engineer specializing in AI-driven autonomous Site Reliability Engineering."
 
     # Upsert Posts
     for post_info in POSTS_DATA:

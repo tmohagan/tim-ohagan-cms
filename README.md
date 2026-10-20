@@ -6,7 +6,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109%2B-009688?style=flat-square)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-Portfolio and Content Management System for **Tim O'Hagan** (Software Agentic Engineer), serving as the reference target application for [GhostMachine.dev](https://ghostmachine.dev)—an autonomous Site Reliability Engineering (SRE) control plane.
+Portfolio and Content Management System for **Tim O'Hagan** (Forward Deployment Engineer), serving as the reference target application for [GhostMachine.dev](https://ghostmachine.dev)—an autonomous Site Reliability Engineering (SRE) control plane.
 
 ---
 

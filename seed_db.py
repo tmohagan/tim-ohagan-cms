@@ -116,7 +116,7 @@ async def seed():
         if not tim_profile:
             tim_profile = Profile(
                 name="Tim OHagan",
-                bio="Software Agentic Engineer specializing in AI-driven autonomous Site Reliability Engineering.",
+                bio="Forward Deployment Engineer specializing in AI-driven autonomous Site Reliability Engineering.",
                 github_url="https://github.com/tmohagan"
             )
             session.add(tim_profile)
@@ -124,6 +124,7 @@ async def seed():
             await session.refresh(tim_profile)
             print(f"Created Profile: {tim_profile.name} (ID: {tim_profile.id})")
         else:
+            tim_profile.bio = "Forward Deployment Engineer specializing in AI-driven autonomous Site Reliability Engineering."
             print(f"Found existing Profile: {tim_profile.name} (ID: {tim_profile.id})")
 
         # Upsert Posts
