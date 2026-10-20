@@ -51,6 +51,12 @@ async def serve_frontend():
     """Serve the premium portfolio frontend."""
     return FileResponse("app/static/index.html")
 
+@app.get("/fa_demo", tags=["Frontend"])
+@app.get("/fa_demo/", tags=["Frontend"], include_in_schema=False)
+async def serve_franca_advisory_demo():
+    """Serve the Franca Advisory website demo."""
+    return FileResponse("app/static/fa_demo/index.html")
+
 @app.get("/admin", tags=["Frontend"])
 async def serve_admin(admin: str = Depends(get_current_admin)):
     """Serve the admin dashboard, protected by HTTP Basic Auth."""

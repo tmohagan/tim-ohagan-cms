@@ -1,0 +1,2455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franca Advisory | Brand &amp; Growth Advisory for Consumer Businesses</title>
+    <meta name="description" content="Franca Advisory, founded by Franci Lencioni. Brand &amp; Growth Advisory for Consumer Businesses across CPG, QSR, and Retail—seeing the consumer business from more than one side of the table.">
+    <meta name="keywords" content="Franca Advisory, Franci Lencioni, Brand Strategy, Growth Strategy, CPG Advisory, QSR Marketing, Retail Merchandising, Innovation Strategy, Consumer Insights, Chicago">
+    <meta name="author" content="Franci Lencioni — Franca Advisory">
+    <meta name="theme-color" content="#5B6E8E">
+    <link rel="canonical" href="https://tim-ohagan.com/fa_demo">
+    <link rel="icon" type="image/png" href="/static/fa_demo/favicon.png">
+
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tim-ohagan.com/fa_demo">
+    <meta property="og:title" content="Franca Advisory | Brand &amp; Growth Advisory for Consumer Businesses">
+    <meta property="og:description" content="Founded by Franci Lencioni. Seeing the consumer business from more than one side of the table—helping CPG, QSR, and Retail leaders turn insights into action, innovation, and growth.">
+    <meta property="og:image" content="https://tim-ohagan.com/static/fa_demo/banner.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Franca Advisory | Brand &amp; Growth Advisory for Consumer Businesses">
+    <meta name="twitter:description" content="Seeing the consumer business from more than one side of the table. CPG • QSR • RETAIL.">
+    <meta name="twitter:image" content="https://tim-ohagan.com/static/fa_demo/banner.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Official Franca Advisory Palette sampled from Brand Identity */
+            --slate-brand: #5B6E8E;
+            --slate-mid: #485A78;
+            --slate-deep: #243044;
+            --slate-ink: #17202E;
+            --cream-brand: #FDF5E8;
+            --cream-light: #FAF6F0;
+            --cream-warm: #F2EAE0;
+            --cream-border: #E2D6C5;
+            --burgundy-brand: #73181D;
+            --burgundy-rich: #8C1E24;
+            --burgundy-soft: rgba(115, 24, 29, 0.09);
+            --slate-soft: rgba(91, 110, 142, 0.12);
+            --text-dark: #1E2838;
+            --text-muted: #526075;
+            --text-on-slate: #FDF5E8;
+            --text-on-slate-muted: rgba(253, 245, 232, 0.82);
+
+            --font-serif: 'Fraunces', Georgia, serif;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --shadow-soft: 0 12px 36px -8px rgba(23, 32, 46, 0.08);
+            --shadow-elevated: 0 24px 48px -12px rgba(23, 32, 46, 0.16);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--cream-light);
+            color: var(--text-dark);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Editorial Top Announcement Bar */
+        .top-ribbon {
+            background-color: var(--slate-ink);
+            color: var(--cream-brand);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 24px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(253, 245, 232, 0.12);
+        }
+
+        .top-ribbon span.dot {
+            color: #C84B52;
+            margin: 0 10px;
+        }
+
+        .top-ribbon a {
+            color: var(--cream-brand);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            margin-left: 8px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(91, 110, 142, 0.96);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(253, 245, 232, 0.16);
+            transition: all 0.25s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(36, 48, 68, 0.97);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .nav-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 14px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+        }
+
+        .nav-brand img {
+            height: 46px;
+            width: auto;
+            display: block;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(253, 245, 232, 0.3);
+        }
+
+        .nav-tagline {
+            color: var(--cream-brand);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-on-slate-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--cream-brand);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            border: none;
+        }
+
+        .btn-burgundy {
+            background-color: var(--burgundy-brand);
+            color: var(--cream-brand);
+            box-shadow: 0 4px 14px rgba(115, 24, 29, 0.35);
+        }
+
+        .btn-burgundy:hover {
+            background-color: var(--burgundy-rich);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(115, 24, 29, 0.45);
+        }
+
+        .btn-cream {
+            background-color: var(--cream-brand);
+            color: var(--slate-deep);
+        }
+
+        .btn-cream:hover {
+            background-color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline-cream {
+            background: transparent;
+            color: var(--cream-brand);
+            border: 1.5px solid rgba(253, 245, 232, 0.45);
+        }
+
+        .btn-outline-cream:hover {
+            border-color: var(--cream-brand);
+            background: rgba(253, 245, 232, 0.08);
+        }
+
+        .btn-outline-slate {
+            background: transparent;
+            color: var(--slate-deep);
+            border: 1.5px solid var(--slate-brand);
+        }
+
+        .btn-outline-slate:hover {
+            background: var(--slate-brand);
+            color: var(--cream-brand);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(253, 245, 232, 0.35);
+            color: var(--cream-brand);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section — Official Slate Blue Identity */
+        .hero {
+            background: linear-gradient(165deg, var(--slate-brand) 0%, #4E607E 55%, var(--slate-deep) 100%);
+            color: var(--cream-brand);
+            padding: 84px 28px 96px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--burgundy-brand);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(253, 245, 232, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1260px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.18fr 0.82fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .eyebrow-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 16px;
+            background: rgba(23, 32, 46, 0.32);
+            border: 1px solid rgba(253, 245, 232, 0.24);
+            border-radius: 999px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--cream-brand);
+            margin-bottom: 24px;
+        }
+
+        .eyebrow-pill .crimson-bar {
+            width: 18px;
+            height: 3px;
+            background: #D94E54;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 4.4vw, 4.05rem);
+            font-weight: 500;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--cream-brand);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: #F8E3C4;
+            text-decoration: underline;
+            text-decoration-color: var(--burgundy-brand);
+            text-underline-offset: 8px;
+            text-decoration-thickness: 3px;
+        }
+
+        .hero-lead {
+            font-size: 1.16rem;
+            line-height: 1.72;
+            color: var(--text-on-slate-muted);
+            max-width: 640px;
+            margin-bottom: 34px;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 44px;
+        }
+
+        .hero-cred-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(253, 245, 232, 0.2);
+        }
+
+        .cred-item strong {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 1.55rem;
+            font-weight: 600;
+            color: var(--cream-brand);
+            line-height: 1.2;
+        }
+
+        .cred-item span {
+            font-size: 0.82rem;
+            color: var(--text-on-slate-muted);
+            line-height: 1.4;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Hero Right Card — Brand Lockup & Two Sides of the Table */
+        .hero-card {
+            background: rgba(23, 32, 46, 0.42);
+            border: 1px solid rgba(253, 245, 232, 0.22);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .hero-card-logo-box {
+            background: var(--slate-brand);
+            border: 1px solid rgba(253, 245, 232, 0.18);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .hero-card-logo-box img {
+            max-width: 260px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 14px;
+            display: block;
+        }
+
+        .hero-card-logo-sub {
+            font-family: var(--font-serif);
+            font-size: 1.02rem;
+            color: var(--cream-brand);
+            border-top: 1px solid rgba(253, 245, 232, 0.2);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .hero-card-sectors {
+            font-size: 0.74rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(253, 245, 232, 0.78);
+            margin-top: 6px;
+            font-weight: 600;
+        }
+
+        .table-lens-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .lens-box {
+            background: rgba(253, 245, 232, 0.06);
+            border: 1px solid rgba(253, 245, 232, 0.14);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .lens-box h4 {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #F8E3C4;
+            margin-bottom: 6px;
+        }
+
+        .lens-box p {
+            font-size: 0.83rem;
+            color: var(--text-on-slate-muted);
+            line-height: 1.45;
+        }
+
+        .founder-mini {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(253, 245, 232, 0.15);
+            font-size: 0.85rem;
+        }
+
+        .founder-mini-left strong {
+            color: var(--cream-brand);
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .founder-mini-left span {
+            color: var(--text-on-slate-muted);
+            font-size: 0.8rem;
+        }
+
+        .linkedin-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 13px;
+            border-radius: var(--radius-sm);
+            background: rgba(253, 245, 232, 0.12);
+            color: var(--cream-brand);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .linkedin-badge:hover {
+            background: rgba(253, 245, 232, 0.22);
+        }
+
+        /* Brand Pedigree Bar */
+        .pedigree-bar {
+            background: var(--cream-warm);
+            border-bottom: 1px solid var(--cream-border);
+            padding: 28px 28px;
+        }
+
+        .pedigree-inner {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .pedigree-label {
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pedigree-label::before {
+            content: "";
+            width: 24px;
+            height: 3px;
+            background: var(--burgundy-brand);
+            display: inline-block;
+        }
+
+        .pedigree-brands {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .pedigree-pill {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pedigree-pill strong {
+            font-family: var(--font-serif);
+            font-size: 1.08rem;
+            color: var(--slate-deep);
+            font-weight: 600;
+        }
+
+        .pedigree-pill span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Layout Helpers */
+        .section {
+            padding: 96px 28px;
+        }
+
+        .section-warm {
+            background-color: var(--cream-warm);
+            border-top: 1px solid var(--cream-border);
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .section-slate {
+            background-color: var(--slate-deep);
+            color: var(--cream-brand);
+        }
+
+        .container {
+            max-width: 1260px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            max-width: 780px;
+            margin-bottom: 56px;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--burgundy-brand);
+            margin-bottom: 14px;
+        }
+
+        .section-kicker::before {
+            content: "";
+            width: 28px;
+            height: 2.5px;
+            background: var(--burgundy-brand);
+            display: inline-block;
+        }
+
+        .section-slate .section-kicker {
+            color: #E5858A;
+        }
+
+        .section-slate .section-kicker::before {
+            background: #E5858A;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3.3vw, 2.9rem);
+            font-weight: 500;
+            line-height: 1.16;
+            color: var(--slate-deep);
+            margin-bottom: 18px;
+            letter-spacing: -0.015em;
+        }
+
+        .section-slate .section-title {
+            color: var(--cream-brand);
+        }
+
+        .section-subtitle {
+            font-size: 1.08rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .section-slate .section-subtitle {
+            color: var(--text-on-slate-muted);
+        }
+
+        /* Section 1: The Franca Advantage (More Than One Side of the Table) */
+        .advantage-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .quote-panel {
+            background: var(--slate-brand);
+            color: var(--cream-brand);
+            padding: 44px 40px;
+            border-radius: var(--radius-lg);
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 5px solid var(--burgundy-brand);
+        }
+
+        .quote-panel blockquote {
+            font-family: var(--font-serif);
+            font-size: 1.38rem;
+            line-height: 1.52;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: var(--cream-brand);
+        }
+
+        .quote-panel p.quote-body {
+            font-size: 0.98rem;
+            color: var(--text-on-slate-muted);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .quote-attribution {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(253, 245, 232, 0.22);
+        }
+
+        .quote-attribution strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--cream-brand);
+        }
+
+        .quote-attribution span {
+            font-size: 0.83rem;
+            color: rgba(253, 245, 232, 0.78);
+        }
+
+        .realities-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .reality-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-left: 4px solid var(--slate-brand);
+            border-radius: var(--radius-md);
+            padding: 28px 30px;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .reality-card:hover {
+            transform: translateY(-2px);
+            border-left-color: var(--burgundy-brand);
+        }
+
+        .reality-meta {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--burgundy-brand);
+            margin-bottom: 6px;
+        }
+
+        .reality-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: var(--slate-deep);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .reality-card p {
+            color: var(--text-muted);
+            font-size: 0.96rem;
+            line-height: 1.65;
+        }
+
+        .four-questions-bar {
+            margin-top: 48px;
+            background: var(--cream-warm);
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-md);
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .q-item {
+            border-left: 2px solid var(--burgundy-brand);
+            padding-left: 16px;
+        }
+
+        .q-item span {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--burgundy-brand);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .q-item strong {
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            color: var(--slate-deep);
+            font-weight: 600;
+        }
+
+        /* Section 2: Three Core Pillars (Practice Areas) */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 52px;
+        }
+
+        .pillar-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-lg);
+            padding: 38px 32px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .pillar-card::top {
+            height: 4px;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-elevated);
+            border-color: var(--slate-brand);
+        }
+
+        .pillar-num {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--burgundy-brand);
+            background: var(--burgundy-soft);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        .pillar-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--slate-deep);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .pillar-quote {
+            font-size: 0.98rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .pillar-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .pillar-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pillar-list li::before {
+            content: "→";
+            color: var(--burgundy-brand);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .pillar-outcome {
+            background: var(--cream-light);
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            font-size: 0.82rem;
+            color: var(--slate-deep);
+            border-left: 3px solid var(--slate-brand);
+        }
+
+        /* LinkedIn Services Interactive Strip */
+        .services-bar {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-md);
+            padding: 28px 32px;
+        }
+
+        .services-bar-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .services-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .service-pill {
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--cream-border);
+            background: var(--cream-light);
+            color: var(--slate-deep);
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .service-pill:hover,
+        .service-pill.active {
+            background: var(--slate-brand);
+            color: var(--cream-brand);
+            border-color: var(--slate-brand);
+        }
+
+        .service-detail-box {
+            margin-top: 16px;
+            padding: 18px 22px;
+            background: var(--cream-light);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid var(--burgundy-brand);
+            font-size: 0.94rem;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Section 3: Interactive "Find the Unlock" Diagnostic */
+        .unlock-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 36px;
+            align-items: stretch;
+        }
+
+        .scenario-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .scenario-btn {
+            text-align: left;
+            padding: 20px 22px;
+            border-radius: var(--radius-md);
+            background: rgba(253, 245, 232, 0.06);
+            border: 1px solid rgba(253, 245, 232, 0.16);
+            color: var(--cream-brand);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: var(--font-sans);
+        }
+
+        .scenario-btn:hover {
+            background: rgba(253, 245, 232, 0.12);
+        }
+
+        .scenario-btn.active {
+            background: var(--cream-brand);
+            color: var(--slate-deep);
+            border-color: var(--cream-brand);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+        }
+
+        .scenario-btn .scen-tag {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 700;
+            color: #E5858A;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .scenario-btn.active .scen-tag {
+            color: var(--burgundy-brand);
+        }
+
+        .scenario-btn strong {
+            font-family: var(--font-serif);
+            font-size: 1.12rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .unlock-display {
+            background: var(--cream-brand);
+            color: var(--slate-deep);
+            border-radius: var(--radius-lg);
+            padding: 40px 38px;
+            box-shadow: var(--shadow-elevated);
+            border-top: 5px solid var(--burgundy-brand);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .unlock-display-header {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--cream-border);
+        }
+
+        .unlock-display-header span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--burgundy-brand);
+            font-weight: 700;
+        }
+
+        .unlock-display-header h3 {
+            font-family: var(--font-serif);
+            font-size: 1.65rem;
+            color: var(--slate-deep);
+            margin-top: 6px;
+        }
+
+        .unlock-lenses {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        .unlock-lens-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            padding: 18px;
+            border-radius: var(--radius-sm);
+        }
+
+        .unlock-lens-card h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--slate-brand);
+            margin-bottom: 6px;
+        }
+
+        .unlock-lens-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .unlock-box {
+            background: var(--burgundy-soft);
+            border-left: 4px solid var(--burgundy-brand);
+            padding: 18px 20px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 24px;
+        }
+
+        .unlock-box strong {
+            display: block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--burgundy-brand);
+            margin-bottom: 4px;
+        }
+
+        .unlock-box p {
+            font-size: 0.95rem;
+            color: var(--slate-deep);
+            font-weight: 500;
+        }
+
+        /* Section 4: Case Studies & Honors Ledger */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 64px;
+        }
+
+        .case-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-lg);
+            padding: 34px 30px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .case-badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .case-brand-tag {
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 5px 12px;
+            border-radius: 999px;
+            background: var(--slate-soft);
+            color: var(--slate-deep);
+        }
+
+        .case-year {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .case-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            color: var(--slate-deep);
+            margin-bottom: 12px;
+            line-height: 1.28;
+        }
+
+        .case-card p {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.65;
+        }
+
+        .case-proof {
+            background: var(--cream-warm);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border-left: 3px solid var(--burgundy-brand);
+            font-size: 0.85rem;
+            color: var(--slate-deep);
+            font-weight: 600;
+        }
+
+        /* Awards Table / Ledger */
+        .awards-panel {
+            background: var(--slate-deep);
+            color: var(--cream-brand);
+            border-radius: var(--radius-lg);
+            padding: 48px 44px;
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .awards-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 20px;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(253, 245, 232, 0.16);
+        }
+
+        .awards-header h3 {
+            font-family: var(--font-serif);
+            font-size: 1.9rem;
+            font-weight: 500;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .award-row {
+            background: rgba(253, 245, 232, 0.05);
+            border: 1px solid rgba(253, 245, 232, 0.12);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .award-row strong {
+            font-family: var(--font-serif);
+            font-size: 1.06rem;
+            color: var(--cream-brand);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .award-row span {
+            font-size: 0.84rem;
+            color: var(--text-on-slate-muted);
+        }
+
+        .award-org-badge {
+            background: var(--burgundy-brand);
+            color: var(--cream-brand);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 5px 10px;
+            border-radius: var(--radius-sm);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* Section 5: Field Notes & Perspectives (From Franci's LinkedIn) */
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .note-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-lg);
+            padding: 34px 32px;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .note-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--slate-brand);
+        }
+
+        .note-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--burgundy-brand);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .note-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.42rem;
+            color: var(--slate-deep);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .note-excerpt {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.68;
+            margin-bottom: 22px;
+            white-space: pre-line;
+        }
+
+        .note-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--cream-border);
+            font-size: 0.85rem;
+        }
+
+        .link-btn {
+            background: none;
+            border: none;
+            color: var(--slate-deep);
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            font-family: var(--font-sans);
+        }
+
+        .link-btn:hover {
+            color: var(--burgundy-brand);
+        }
+
+        /* Section 6: Engagement Models & Contact Form */
+        .engage-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 52px;
+            align-items: start;
+        }
+
+        .models-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 28px;
+        }
+
+        .model-item {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+        }
+
+        .model-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.18rem;
+            color: var(--slate-deep);
+            margin-bottom: 6px;
+        }
+
+        .model-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-card {
+            background: #ffffff;
+            border: 1px solid var(--cream-border);
+            border-top: 5px solid var(--slate-brand);
+            border-radius: var(--radius-lg);
+            padding: 42px 38px;
+            box-shadow: var(--shadow-elevated);
+        }
+
+        .contact-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            color: var(--slate-deep);
+            margin-bottom: 8px;
+        }
+
+        .contact-card > p {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            margin-bottom: 26px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--slate-deep);
+            margin-bottom: 6px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--cream-border);
+            border-radius: var(--radius-sm);
+            background: var(--cream-light);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--slate-brand);
+            background: #ffffff;
+        }
+
+        .form-status {
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(22, 101, 52, 0.1);
+            color: #166534;
+            border: 1px solid rgba(22, 101, 52, 0.25);
+        }
+
+        .form-status.error {
+            display: block;
+            background: var(--burgundy-soft);
+            color: var(--burgundy-brand);
+            border: 1px solid rgba(115, 24, 29, 0.25);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--slate-ink);
+            color: var(--cream-brand);
+            padding: 64px 28px 40px;
+            border-top: 4px solid var(--burgundy-brand);
+        }
+
+        .footer-inner {
+            max-width: 1260px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 32px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(253, 245, 232, 0.14);
+        }
+
+        .footer-logo img {
+            height: 54px;
+            width: auto;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo p {
+            font-size: 0.88rem;
+            color: var(--text-on-slate-muted);
+            max-width: 420px;
+        }
+
+        .footer-bottom {
+            max-width: 1260px;
+            margin: 24px auto 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.82rem;
+            color: rgba(253, 245, 232, 0.65);
+        }
+
+        .footer-bottom a {
+            color: var(--cream-brand);
+            text-decoration: none;
+        }
+
+        /* Essay Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(23, 32, 46, 0.72);
+            backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--cream-light);
+            color: var(--text-dark);
+            max-width: 680px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            border-radius: var(--radius-lg);
+            padding: 40px 38px;
+            box-shadow: var(--shadow-elevated);
+            border-top: 5px solid var(--burgundy-brand);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--cream-warm);
+            border: 1px solid var(--cream-border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            color: var(--slate-deep);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container,
+            .advantage-layout,
+            .unlock-grid,
+            .engage-grid {
+                grid-template-columns: 1fr;
+            }
+            .pillars-grid,
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .awards-grid,
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+            .four-questions-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-divider, .nav-tagline {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: inline-block;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--slate-deep);
+                padding: 20px 28px;
+                border-bottom: 2px solid var(--burgundy-brand);
+            }
+            .hero-cred-strip,
+            .table-lens-grid,
+            .unlock-lenses,
+            .four-questions-bar,
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-ribbon">
+        Franca Advisory <span class="dot">•</span> Brand &amp; Growth Advisory for Consumer Businesses <span class="dot">•</span> CPG · QSR · RETAIL
+        <a href="https://www.linkedin.com/posts/flencioni_cpg-qsr-brandstrategy-activity-7510708668267507712-dRZX" target="_blank" rel="noopener">Read the Launch Note on LinkedIn →</a>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#top" class="nav-brand" aria-label="Franca Advisory Home">
+                <img src="/static/fa_demo/logo-light.png" alt="Franca Advisory Logo">
+                <div class="nav-divider"></div>
+                <div class="nav-tagline">
+                    CPG &bull; QSR &bull; RETAIL<br>
+                    <span style="opacity: 0.72; font-weight: 500; letter-spacing: 0.08em;">Greater Chicago Area</span>
+                </div>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#advantage">Both Sides of the Table</a></li>
+                <li><a href="#practice-areas">Where Franca Helps</a></li>
+                <li><a href="#unlock-finder">Find the Unlock</a></li>
+                <li><a href="#track-record">Track Record</a></li>
+                <li><a href="#perspectives">Field Notes</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="mobile-menu-btn" onclick="document.getElementById('navLinks').classList.toggle('mobile-open')">Menu</button>
+                <a href="#contact" class="btn btn-burgundy">Start a Conversation</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="eyebrow-pill">
+                    <span class="crimson-bar"></span>
+                    Brand &amp; Growth Advisory &bull; CPG &bull; QSR &bull; Retail
+                </div>
+                <h1>
+                    Seeing the consumer business from <em>more than one side</em> of the table.
+                </h1>
+                <p class="hero-lead">
+                    Founded by <strong>Franci Lencioni</strong>, Franca Advisory helps consumer leaders get underneath the real problem, sort through the options, weigh the commercial tradeoffs, and find the unlock that makes people choose—and makes the business grow.
+                </p>
+                <div class="hero-cta-row">
+                    <a href="#contact" class="btn btn-cream">Work With Franca Advisory</a>
+                    <a href="#unlock-finder" class="btn btn-outline-cream">Explore the Diagnostic Unlock →</a>
+                </div>
+
+                <div class="hero-cred-strip">
+                    <div class="cred-item">
+                        <strong>3× #1</strong>
+                        <span>Most Effective Brand in the World (WARC Effective 100)</span>
+                    </div>
+                    <div class="cred-item">
+                        <strong>#1 Innovation</strong>
+                        <span>Fast Company Branding Innovation &amp; 3× Gold Effie Winner</span>
+                    </div>
+                    <div class="cred-item">
+                        <strong>360° Operator</strong>
+                        <span>McDonald’s &amp; McCain Scale + Nature’s Path Agility + Retail Buying</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-card">
+                    <div class="hero-card-logo-box">
+                        <img src="/static/fa_demo/logo-light.png" alt="Franca Advisory Official Mark">
+                        <div class="hero-card-logo-sub">
+                            Brand &amp; Growth Advisory for Consumer Businesses
+                        </div>
+                        <div class="hero-card-sectors">
+                            CPG &bull; QSR &bull; RETAIL
+                        </div>
+                    </div>
+
+                    <div class="table-lens-grid">
+                        <div class="lens-box">
+                            <h4>The Brand Side</h4>
+                            <p>Positioning, innovation pipeline, value framing, cultural relevance, and creative effectiveness that builds iconic brands.</p>
+                        </div>
+                        <div class="lens-box">
+                            <h4>The Buying Side</h4>
+                            <p>Retail merchandising, buyer priorities, private label dynamics, price architecture, and P&amp;L execution from strategy to shelf.</p>
+                        </div>
+                    </div>
+
+                    <div class="founder-mini">
+                        <div class="founder-mini-left">
+                            <strong>Franci Lencioni</strong>
+                            <span>Founder &amp; Principal &bull; Greater Chicago Area</span>
+                        </div>
+                        <a href="https://www.linkedin.com/in/flencioni" target="_blank" rel="noopener" class="linkedin-badge">
+                            in /flencioni ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operating Pedigree Bar -->
+    <div class="pedigree-bar">
+        <div class="pedigree-inner">
+            <div class="pedigree-label">Operating Pedigree &amp; Industry Leadership</div>
+            <div class="pedigree-brands">
+                <div class="pedigree-pill">
+                    <strong>McDonald’s USA</strong>
+                    <span>U.S. Brand, Value &amp; Cultural Scale</span>
+                </div>
+                <div class="pedigree-pill">
+                    <strong>Nature’s Path Foods</strong>
+                    <span>Brand &amp; Innovation Leadership (&amp; First Client)</span>
+                </div>
+                <div class="pedigree-pill">
+                    <strong>McCain Foods</strong>
+                    <span>Global Food &amp; Commercial Excellence</span>
+                </div>
+                <div class="pedigree-pill">
+                    <strong>Retail Buying &amp; Sourcing</strong>
+                    <span>Merchandising, Private Label &amp; Global Sourcing</span>
+                </div>
+                <div class="pedigree-pill">
+                    <strong>ANA Committees</strong>
+                    <span>Brand Management, Strategy &amp; Content</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 1: The Franca Advantage -->
+    <section class="section" id="advantage">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">The Franca Perspective</div>
+                <h2 class="section-title">Why staying in one lane rarely solves a commercial problem.</h2>
+                <p class="section-subtitle">
+                    Most advisors only know one seat at the table: pure brand creative, pure research, or pure commercial spreadsheets. Franca Advisory was built for the space where those realities meet.
+                </p>
+            </div>
+
+            <div class="advantage-layout">
+                <div class="quote-panel">
+                    <blockquote>
+                        “Earlier this month, I left Nature’s Path. A week later, they became my first client. I started Franca Advisory around the work I’ve always loved most.”
+                    </blockquote>
+                    <p class="quote-body">
+                        “I’ve spent my career moving around the business, across very different operating realities: global icons, founder-led businesses, the brand side, and the buying side. McDonald’s and McCain taught me scale and what best-in-class looks like. Nature’s Path taught me what agility and entrepreneurial thinking really mean. Years in retail merchandising and buying, plus working abroad, taught me to look at brand decisions from more than one side of the table.”
+                    </p>
+                    <p class="quote-body" style="margin-bottom: 28px;">
+                        “The common thread has always been the same: start with the customer, get underneath the real problem, and help leaders sort through the options, weigh the tradeoffs, and land on a direction.”
+                    </p>
+                    <div class="quote-attribution">
+                        <div>
+                            <strong>Franci Lencioni</strong>
+                            <span>Founder, Franca Advisory</span>
+                        </div>
+                        <img src="/static/fa_demo/logo-light.png" alt="Franca" style="height: 34px; width: auto;">
+                    </div>
+                </div>
+
+                <div class="realities-stack">
+                    <div class="reality-card">
+                        <div class="reality-meta">01 &bull; Global Icons &amp; Best-in-Class Scale</div>
+                        <h3>McDonald’s USA &amp; McCain Foods</h3>
+                        <p>
+                            Deep experience inside world-leading QSR and food systems—where brand positioning, national value architecture, youth marketing, and agency leadership have to perform for millions of daily customers and rigorous franchisee/operator P&amp;Ls.
+                        </p>
+                    </div>
+
+                    <div class="reality-card">
+                        <div class="reality-meta">02 &bull; Founder-Led Agility &amp; Challenger Mindset</div>
+                        <h3>Nature’s Path Foods (And Franca’s First Client)</h3>
+                        <p>
+                            Leading brand renovation and breakthrough innovation in organic and natural CPG—modernizing iconic flagship SKUs for Costco and launching award-winning extensions (Love Crunch Dubai Granola) with entrepreneurial speed and cross-functional grit.
+                        </p>
+                    </div>
+
+                    <div class="reality-card">
+                        <div class="reality-meta">03 &bull; The Buying, Merchandising &amp; Sourcing Seat</div>
+                        <h3>Private Label, Global Sourcing &amp; Retail Merchandising</h3>
+                        <p>
+                            Before leading national brands, Franci sat on the buying side—from global sourcing and private label to seasonal and category buying. That means every brand recommendation is pressure-tested against how retail buyers actually think and buy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The 4 Commercial Reality Questions -->
+            <div class="four-questions-bar">
+                <div class="q-item">
+                    <span>Consumer Demand</span>
+                    <strong>Not just what people say they want—what makes them choose?</strong>
+                </div>
+                <div class="q-item">
+                    <span>Velocity Reality</span>
+                    <strong>What will actually sell and repeat on the shelf?</strong>
+                </div>
+                <div class="q-item">
+                    <span>Retailer Alignment</span>
+                    <strong>What will the retail buyer truly get behind in a JBP?</strong>
+                </div>
+                <div class="q-item">
+                    <span>Operational Feasibility</span>
+                    <strong>Will the business make money, and can we realistically pull it off?</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Practice Areas -->
+    <section class="section section-warm" id="practice-areas">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Where Franca Can Help</div>
+                <h2 class="section-title">Three core practice areas built around finding the unlock.</h2>
+                <p class="section-subtitle">
+                    Whether you are a founder-led CPG challenger scaling into Club and Conventional, or a global QSR/food icon recalibrating value and portfolio strategy, Franca Advisory brings senior, hands-on leadership.
+                </p>
+            </div>
+
+            <div class="pillars-grid">
+                <!-- Pillar 1 -->
+                <div class="pillar-card">
+                    <div>
+                        <span class="pillar-num">Pillar 01</span>
+                        <h3>Insights to Action</h3>
+                        <p class="pillar-quote">
+                            Research, consumer and customer data, and market inputs turned into clear priorities and next steps.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Synthesizing fragmented consumer research, syndicated POS data, and shopper insights into a single narrative</li>
+                            <li>Decoding cultural and category trend reports to uncover what stretched consumers are actually asking for</li>
+                            <li>Identifying high-conviction commercial unlocks: what makes people choose and why</li>
+                            <li>Executive tradeoff facilitation to move leadership teams from analysis paralysis to clear priorities</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-outcome">
+                        <strong>The Outcome:</strong> Sharp strategic direction your whole cross-functional team understands and can act on immediately.
+                    </div>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card">
+                    <div>
+                        <span class="pillar-num">Pillar 02</span>
+                        <h3>Innovation &amp; Growth</h3>
+                        <p class="pillar-quote">
+                            New concepts, portfolio choices, pricing, channel development, and where to place the next bet.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>New product concept development and multi-year innovation pipeline architecture</li>
+                            <li>Modernizing iconic heritage SKUs with a challenger mindset without losing core loyalists</li>
+                            <li>Value &amp; price architecture—shifting the conversation from <em>what you pay</em> to <em>what you get</em></li>
+                            <li>Channel expansion strategy across Club (Costco), Natural, Mass, and Conventional retail</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-outcome">
+                        <strong>The Outcome:</strong> Focused bets that win both consumer trial and retail buyer conviction while protecting margin.
+                    </div>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card">
+                    <div>
+                        <span class="pillar-num">Pillar 03</span>
+                        <h3>Brand &amp; Go-To-Market</h3>
+                        <p class="pillar-quote">
+                            Positioning, customer strategy, launch planning, media, ecommerce, agency briefs, and partner leadership.
+                        </p>
+                        <ul class="pillar-list">
+                            <li>Distinctive brand positioning, architecture, and portfolio guardrails</li>
+                            <li>Customer strategy &amp; Joint Business Planning (JBP) narratives built with a former buyer’s lens</li>
+                            <li>End-to-end launch planning across media, Retail Media Networks (RMNs), shopper, and eCommerce</li>
+                            <li>Sharp agency briefs and senior partner leadership to get breakthrough creative and effective execution</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-outcome">
+                        <strong>The Outcome:</strong> Cohesive strategy-to-shelf execution that shows up powerfully in culture and at the point of purchase.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive LinkedIn Services Explorer -->
+            <div class="services-bar">
+                <div class="services-bar-top">
+                    <div>
+                        <strong style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--slate-deep);">Advisory Specialties &amp; Capabilities</strong>
+                        <span style="display: block; font-size: 0.85rem; color: var(--text-muted);">Select a specialty from Franci’s practice to view typical engagement deliverables:</span>
+                    </div>
+                    <a href="#contact" class="link-btn">Request a Custom Scope →</a>
+                </div>
+                <div class="services-pills" id="servicePills">
+                    <button class="service-pill active" onclick="selectService(0)">Brand Strategy &amp; Consulting</button>
+                    <button class="service-pill" onclick="selectService(1)">Growth Marketing</button>
+                    <button class="service-pill" onclick="selectService(2)">Value &amp; Pricing Architecture</button>
+                    <button class="service-pill" onclick="selectService(3)">Product Renovation &amp; Innovation</button>
+                    <button class="service-pill" onclick="selectService(4)">Customer &amp; Club Channel Strategy</button>
+                    <button class="service-pill" onclick="selectService(5)">Content &amp; Agency Leadership</button>
+                    <button class="service-pill" onclick="selectService(6)">Fractional Brand Leadership</button>
+                </div>
+                <div class="service-detail-box" id="serviceDetailBox">
+                    <div id="serviceDetailText">
+                        <strong>Brand Strategy &amp; Consulting:</strong> Clarifying brand positioning, distinctive equities, target consumer tension, and portfolio roles so every dollar of marketing and innovation pulls in the same direction.
+                    </div>
+                    <a href="#contact" class="btn btn-outline-slate" style="padding: 8px 16px; font-size: 0.82rem;">Inquire About This →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Interactive Diagnostic Unlock Finder -->
+    <section class="section section-slate" id="unlock-finder">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Interactive Diagnostic</div>
+                <h2 class="section-title">“Turns out, finding the unlock is my favorite part.”</h2>
+                <p class="section-subtitle">
+                    Every complex consumer problem looks different when you inspect it from both the Brand Side and the Buying Side. Select a challenge below to see how Franca Advisory approaches the unlock.
+                </p>
+            </div>
+
+            <div class="unlock-grid">
+                <div class="scenario-buttons" id="scenarioButtons">
+                    <button class="scenario-btn active" onclick="selectScenario(0)">
+                        <span class="scen-tag">01 &bull; Value &amp; Pricing Strategy</span>
+                        <strong>“Wallets are tight and prices moved fast—how do we make our brand feel ‘worth it’?”</strong>
+                    </button>
+                    <button class="scenario-btn" onclick="selectScenario(1)">
+                        <span class="scen-tag">02 &bull; Heritage SKU Renovation</span>
+                        <strong>“How do we modernize an iconic product for Costco/Club without losing loyal fans?”</strong>
+                    </button>
+                    <button class="scenario-btn" onclick="selectScenario(2)">
+                        <span class="scen-tag">03 &bull; Cultural Trend Translation</span>
+                        <strong>“How do we turn emerging food trends into innovation that feels unmistakably ours?”</strong>
+                    </button>
+                    <button class="scenario-btn" onclick="selectScenario(3)">
+                        <span class="scen-tag">04 &bull; Retailer &amp; JBP Conviction</span>
+                        <strong>“How do we get retail buyers as excited about our launch as our marketing team is?”</strong>
+                    </button>
+                    <button class="scenario-btn" onclick="selectScenario(4)">
+                        <span class="scen-tag">05 &bull; Insights to Action</span>
+                        <strong>“We have decks of research, but leadership still hasn’t landed on a clear direction.”</strong>
+                    </button>
+                </div>
+
+                <div class="unlock-display" id="unlockDisplay">
+                    <div>
+                        <div class="unlock-display-header">
+                            <span id="diagCategory">Diagnostic 01 &bull; Value &amp; Price Architecture</span>
+                            <h3 id="diagTitle">Shifting from “What You Pay” to “What You Get”</h3>
+                        </div>
+
+                        <p id="diagContext" style="font-size: 0.96rem; color: var(--text-muted); margin-bottom: 22px;">
+                            Nobody wakes up thinking about “price architecture.” They just want to feel like what they bought was worth it—and worth it doesn’t necessarily mean the cheapest thing on the menu or shelf.
+                        </p>
+
+                        <div class="unlock-lenses">
+                            <div class="unlock-lens-card">
+                                <h4>The Brand-Side Lens</h4>
+                                <p id="diagBrandLens">How do we elevate perceived quality, occasion fit, emotional satisfaction, and brand equity so value feels generous rather than discounted?</p>
+                            </div>
+                            <div class="unlock-lens-card">
+                                <h4>The Buyer / P&amp;L Lens</h4>
+                                <p id="diagBuyerLens">How do pack-price architecture, promotional guardrails, and penny profit work for both the brand P&amp;L and the retailer’s category margin?</p>
+                            </div>
+                        </div>
+
+                        <div class="unlock-box">
+                            <strong>The Franca Unlock</strong>
+                            <p id="diagUnlock">Reframe the value equation around “What makes this feel worth it?”—aligning product experience, pack/tier architecture, and messaging to protect margin while driving traffic and velocity.</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 16px; border-top: 1px solid var(--cream-border);">
+                        <span style="font-size: 0.84rem; color: var(--text-muted);" id="diagFormat">Recommended Format: 4–6 Week Value &amp; Portfolio Sprint</span>
+                        <a href="#contact" class="btn btn-burgundy" onclick="prefillTopic()">Unpack This With Franci →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Proven Track Record & Awards -->
+    <section class="section" id="track-record">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Proven Impact</div>
+                <h2 class="section-title">Creative, strategic work that measurably builds the brand and the business.</h2>
+                <p class="section-subtitle">
+                    From modernizing organic CPG icons at Costco to contributing to the most awarded run of marketing effectiveness in McDonald’s history, Franci’s work connects strategy to shelf.
+                </p>
+            </div>
+
+            <div class="cases-grid">
+                <div class="case-card">
+                    <div>
+                        <div class="case-badge-row">
+                            <span class="case-brand-tag">Nature’s Path &bull; CPG / Club</span>
+                            <span class="case-year">2026</span>
+                        </div>
+                        <h3>Modernizing an Icon: Pumpkin Seed + Flax Granola at Costco</h3>
+                        <p>
+                            Led strategy-to-shelf renovation of an iconic flagship product alongside a cross-functional team—transitioning the recipe to coconut oil, refreshing the package design, and anticipating evolving consumer preferences with a challenger mindset.
+                        </p>
+                    </div>
+                    <div class="case-proof">
+                        Named one of August 2026’s Best New Costco Finds &amp; selected by Martha Stewart as one of the Best Grab-and-Go Breakfasts at Costco.
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div>
+                        <div class="case-badge-row">
+                            <span class="case-brand-tag">Love Crunch &bull; Brand Innovation</span>
+                            <span class="case-year">2026</span>
+                        </div>
+                        <h3>Cultural Inspiration to Shelf Hit: Love Crunch Dubai Granola</h3>
+                        <p>
+                            Translated a viral cultural flavor phenomenon into a natural, authentic extension for the indulgent organic granola brand—proving how the right cultural insight can become an unmistakable brand moment at retail.
+                        </p>
+                    </div>
+                    <div class="case-proof">
+                        Winner: “Trendiest New Breakfast” in Food Network Magazine’s 2026 Supermarket Awards.
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div>
+                        <div class="case-badge-row">
+                            <span class="case-brand-tag">McDonald’s USA &bull; QSR Scale</span>
+                            <span class="case-year">2019–2023</span>
+                        </div>
+                        <h3>Evolving Value &amp; Breakthrough Brand Effectiveness</h3>
+                        <p>
+                            Helped evolve how McDonald’s U.S. Marketing approached Value—from a narrow conversation about price to a broader consumer truth around “worth it”—during a historic multi-year run of global effectiveness and innovation recognition.
+                        </p>
+                    </div>
+                    <div class="case-proof">
+                        3× Consecutive #1 Brand on the WARC Effective 100, Fast Company #1 Branding Innovation, &amp; Gold Award in Value (Feel Good Marketing Awards).
+                    </div>
+                </div>
+            </div>
+
+            <!-- Honors & Awards Ledger from LinkedIn Profile -->
+            <div class="awards-panel">
+                <div class="awards-header">
+                    <div>
+                        <div class="section-kicker" style="margin-bottom: 8px;">Honors &amp; Industry Recognition</div>
+                        <h3>A Career Defined by Marketing Effectiveness</h3>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-on-slate-muted); max-width: 440px;">
+                        Recognition across global effectiveness benchmarks, branding innovation, and commercial impact on the teams and brands Franci helped shape.
+                    </p>
+                </div>
+
+                <div class="awards-grid">
+                    <div class="award-row">
+                        <div>
+                            <strong>#1 for Branding Innovation &amp; #2 Overall Innovation</strong>
+                            <span>World’s Most Innovative Companies (Mar 2023)</span>
+                        </div>
+                        <span class="award-org-badge">Fast Company</span>
+                    </div>
+
+                    <div class="award-row">
+                        <div>
+                            <strong>#1 Most Effective Brand — WARC Effective 100 (3×)</strong>
+                            <span>Ranked #1 globally in 2019, 2020, and 2021 for campaign effectiveness</span>
+                        </div>
+                        <span class="award-org-badge">WARC 100</span>
+                    </div>
+
+                    <div class="award-row">
+                        <div>
+                            <strong>Brand of the Year &amp; Marketer of the Year: McDonald’s</strong>
+                            <span>Plus 3× Gold Effies: Restaurant, Youth Marketing, Brand Integration (Jun 2022)</span>
+                        </div>
+                        <span class="award-org-badge">Effie Awards</span>
+                    </div>
+
+                    <div class="award-row">
+                        <div>
+                            <strong>#2 Marketer of the Year (2020 &amp; Dec 2022)</strong>
+                            <span>Recognized for cultural relevance and commercial growth</span>
+                        </div>
+                        <span class="award-org-badge">Ad Age</span>
+                    </div>
+
+                    <div class="award-row">
+                        <div>
+                            <strong>Gold Award — Value Category</strong>
+                            <span>Annual Global Marketing Awards celebrating creative excellence (Nov 2022)</span>
+                        </div>
+                        <span class="award-org-badge">Feel Good Awards</span>
+                    </div>
+
+                    <div class="award-row">
+                        <div>
+                            <strong>National Committee Leadership</strong>
+                            <span>Brand Management, Brand Strategy &amp; Content Marketing Committees</span>
+                        </div>
+                        <span class="award-org-badge">ANA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Field Notes & Perspectives (Real LinkedIn Posts) -->
+    <section class="section section-warm" id="perspectives">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Field Notes from Franci Lencioni</div>
+                <h2 class="section-title">Candid perspectives on value, trends, and building brands that sell.</h2>
+                <p class="section-subtitle">
+                    Recent reflections from Franci on how consumer psychology, retail realities, and brand strategy intersect in the real world.
+                </p>
+            </div>
+
+            <div class="notes-grid">
+                <article class="note-card">
+                    <div>
+                        <div class="note-meta">
+                            <span>Value &amp; Price Architecture</span>
+                            <span>October 2026</span>
+                        </div>
+                        <h3>What Working on Value at McDonald’s Taught Me About “Worth It”</h3>
+                        <p class="note-excerpt">“Nobody wakes up thinking about ‘price architecture.’ They just want to feel like what they bought was worth it. And worth it doesn’t necessarily mean the cheapest thing.
+At the time, we were evolving how McDonald’s thought about Value, from a conversation mostly about WHAT YOU PAY to a much bigger one about WHAT YOU GET...”</p>
+                    </div>
+                    <div class="note-footer">
+                        <button class="link-btn" onclick="openNoteModal(0)">Read Full Note →</button>
+                        <a href="https://www.linkedin.com/posts/flencioni_working-on-value-at-mcdonalds-taught-me-activity-7518321651588022272-KwZM" target="_blank" rel="noopener" class="link-btn" style="color: var(--text-muted); font-weight: 500;">View on LinkedIn ↗</a>
+                    </div>
+                </article>
+
+                <article class="note-card">
+                    <div>
+                        <div class="note-meta">
+                            <span>Consumer Insights &amp; Trends</span>
+                            <span>October 2026</span>
+                        </div>
+                        <h3>Looking Underneath 2027 Food Trends: What Stretched Consumers Are Really Asking For</h3>
+                        <p class="note-excerpt">“People are stretched. Not just financially, but for time and attention too. So food is being asked to do more than ever:
+→ More function, but less complexity.
+→ More novelty, but still something familiar.
+→ More discovery, but without giving up comfort.
+The question isn’t ‘Should we do Japanese comfort food?’ It’s ‘What is the consumer really asking for here, and how can our brand make it unmistakably ours?’”</p>
+                    </div>
+                    <div class="note-footer">
+                        <button class="link-btn" onclick="openNoteModal(1)">Read Full Note →</button>
+                        <a href="https://www.linkedin.com/posts/flencioni_im-a-sucker-for-a-good-trend-report-and-activity-7516485138718064640-3SJt" target="_blank" rel="noopener" class="link-btn" style="color: var(--text-muted); font-weight: 500;">View on LinkedIn ↗</a>
+                    </div>
+                </article>
+
+                <article class="note-card">
+                    <div>
+                        <div class="note-meta">
+                            <span>Career Breadth &amp; P&amp;L Ownership</span>
+                            <span>October 2026</span>
+                        </div>
+                        <h3>Why I’m Glad I Never Stayed in One Clean Lane</h3>
+                        <p class="note-excerpt">“I started in private label and global sourcing. Then buying and merchandising. At one point I was literally buying Christmas and toys... From there, I moved deeper into brand, innovation, pricing and customer strategy, and eventually into owning the business outcome, not just the marketing piece.
+I was always curious about how the rest of the business worked. Not just what people wanted. What would actually sell. What the retailer would get behind...”</p>
+                    </div>
+                    <div class="note-footer">
+                        <button class="link-btn" onclick="openNoteModal(2)">Read Full Note →</button>
+                        <a href="https://www.linkedin.com/posts/flencioni_ive-never-been-very-good-at-staying-in-one-activity-7515851304888385536-BqHu" target="_blank" rel="noopener" class="link-btn" style="color: var(--text-muted); font-weight: 500;">View on LinkedIn ↗</a>
+                    </div>
+                </article>
+
+                <article class="note-card">
+                    <div>
+                        <div class="note-meta">
+                            <span>CPG Renovation &amp; Challenger Mindset</span>
+                            <span>July / September 2026</span>
+                        </div>
+                        <h3>Modernizing an Icon Is Harder Than It Looks</h3>
+                        <p class="note-excerpt">“Keeping what made a product iconic while moving it forward takes more than a recipe change. It means anticipating evolving consumer preferences, protecting what people already love, and making thoughtful improvements that set the brand up for long-term growth.
+This is a great example of what happens when an established brand has a challenger mindset...”</p>
+                    </div>
+                    <div class="note-footer">
+                        <button class="link-btn" onclick="openNoteModal(3)">Read Full Note →</button>
+                        <a href="https://www.linkedin.com/posts/flencioni_14-of-the-best-items-new-to-costco-to-try-activity-7488969309109506048-MbXi" target="_blank" rel="noopener" class="link-btn" style="color: var(--text-muted); font-weight: 500;">View on LinkedIn ↗</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Work With Franca Advisory / Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="engage-grid">
+                <div>
+                    <div class="section-kicker">Partner With Franca</div>
+                    <h2 class="section-title">Let’s find the unlock for your brand.</h2>
+                    <p class="section-subtitle">
+                        Franca Advisory partners with CEOs, CMOs, Chief Growth Officers, and Brand VPs across CPG, QSR, and Retail—bringing senior, cross-functional perspective without big-agency overhead.
+                    </p>
+
+                    <div class="models-list">
+                        <div class="model-item">
+                            <h4>01 &bull; Strategic Unlock Sprints (4–6 Weeks)</h4>
+                            <p>Focused engagement to solve a high-stakes problem: turning research into an actionable growth plan, resetting value/pricing architecture, or sharpening a 2027 innovation roadmap.</p>
+                        </div>
+                        <div class="model-item">
+                            <h4>02 &bull; Fractional &amp; Embedded Brand / Growth Leadership</h4>
+                            <p>Ongoing senior advisory alongside your leadership team—guiding brand positioning, agency briefs, partner leadership, and cross-functional go-to-market execution.</p>
+                        </div>
+                        <div class="model-item">
+                            <h4>03 &bull; Strategy-to-Shelf Renovation &amp; Channel Launch</h4>
+                            <p>Hands-on leadership from concept and packaging renovation through customer strategy and Club/Retail JBP pitch readiness.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                        <a href="https://www.linkedin.com/in/flencioni" target="_blank" rel="noopener" class="btn btn-outline-slate">
+                            Connect with Franci on LinkedIn ↗
+                        </a>
+                        <span style="font-size: 0.88rem; color: var(--text-muted);">Based in the Greater Chicago Area &bull; Advising Nationwide</span>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Start a Conversation</h3>
+                    <p>Share a bit about what you’re working on, and Franci will follow up to explore how Franca Advisory can help.</p>
+
+                    <form id="francaContactForm" onsubmit="submitFrancaInquiry(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inqName">Your Name *</label>
+                                <input type="text" id="inqName" required placeholder="Jane Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="inqEmail">Work Email *</label>
+                                <input type="email" id="inqEmail" required placeholder="jane@brand.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="inqCompany">Company / Brand</label>
+                                <input type="text" id="inqCompany" placeholder="Company Name (CPG / QSR / Retail)">
+                            </div>
+                            <div class="form-group">
+                                <label for="inqFocus">Primary Area of Focus</label>
+                                <select id="inqFocus">
+                                    <option value="Insights to Action">Insights to Action (Research &amp; Priorities)</option>
+                                    <option value="Innovation & Growth">Innovation &amp; Growth (Concepts, Pricing, Channels)</option>
+                                    <option value="Brand & Go-To-Market">Brand &amp; Go-To-Market (Positioning, Launch, Agencies)</option>
+                                    <option value="Fractional / Embedded Advisory">Fractional / Embedded Brand &amp; Growth Leadership</option>
+                                    <option value="General Conversation">General Introduction / Reconnecting</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inqMessage">What problem or opportunity are you looking to unlock? *</label>
+                            <textarea id="inqMessage" rows="4" required placeholder="Tell us about your brand, the decision on the table, or where you're looking to place your next bet..."></textarea>
+                        </div>
+
+                        <button type="submit" id="inqSubmitBtn" class="btn btn-burgundy" style="width: 100%; padding: 14px 24px; font-size: 0.98rem;">
+                            Send Inquiry to Franca Advisory
+                        </button>
+
+                        <div id="inqStatus" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="/static/fa_demo/logo-light.png" alt="Franca Advisory">
+                <p>Brand &amp; Growth Advisory for Consumer Businesses. Helping CPG, QSR, and Retail leaders see decisions from every side of the table.</p>
+            </div>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/flencioni" target="_blank" rel="noopener" class="btn btn-outline-cream">LinkedIn Profile ↗</a>
+                <a href="#contact" class="btn btn-burgundy">Request Proposal</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; 2026 Franca Advisory &bull; Franci Lencioni &bull; Greater Chicago Area</div>
+            <div>
+                CPG &bull; QSR &bull; RETAIL &nbsp;|&nbsp;
+                <a href="https://www.linkedin.com/in/flencioni" target="_blank" rel="noopener">linkedin.com/in/flencioni</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Full Field Notes -->
+    <div class="modal-backdrop" id="noteModal" onclick="if(event.target === this) closeNoteModal()">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeNoteModal()" aria-label="Close">&times;</button>
+            <div id="modalMeta" style="font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--burgundy-brand); font-weight: 700; margin-bottom: 8px;"></div>
+            <h3 id="modalTitle" style="font-family: var(--font-serif); font-size: 1.65rem; color: var(--slate-deep); margin-bottom: 20px; line-height: 1.25;"></h3>
+            <div id="modalBody" style="font-size: 1rem; color: var(--text-dark); line-height: 1.75; white-space: pre-line; margin-bottom: 28px;"></div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 18px; border-top: 1px solid var(--cream-border); flex-wrap: wrap; gap: 12px;">
+                <a id="modalLink" href="#" target="_blank" rel="noopener" class="btn btn-outline-slate" style="padding: 9px 18px; font-size: 0.85rem;">Discuss on LinkedIn ↗</a>
+                <a href="#contact" onclick="closeNoteModal()" class="btn btn-burgundy" style="padding: 9px 18px; font-size: 0.85rem;">Talk With Franci About This →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 30) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Interactive Services Bar Data
+        const SERVICES_DATA = [
+            {
+                title: "Brand Strategy & Consulting",
+                desc: "Clarifying brand positioning, distinctive equities, target consumer tension, and portfolio roles so every dollar of marketing and innovation pulls in the same direction."
+            },
+            {
+                title: "Growth Marketing",
+                desc: "Connecting consumer acquisition, household penetration, and repeat velocity across physical retail and digital channels with disciplined ROI focus."
+            },
+            {
+                title: "Value & Pricing Architecture",
+                desc: "Evolving the conversation from 'what you pay' to 'what you get'—designing price/pack tiers and value propositions that feel worth it to consumers and protect margin."
+            },
+            {
+                title: "Product Renovation & Innovation",
+                desc: "Leading new concept development and modernizing iconic flagship SKUs from recipe and packaging evolution through shelf launch."
+            },
+            {
+                title: "Customer & Club Channel Strategy",
+                desc: "Crafting retailer-first growth stories, Costco/Club roadmaps, and Joint Business Planning (JBP) pitches grounded in real retail buying and merchandising experience."
+            },
+            {
+                title: "Content & Agency Leadership",
+                desc: "Writing crystal-clear agency briefs, leading creative/media/PR partners, and ensuring cultural insights translate into breakthrough, award-winning work."
+            },
+            {
+                title: "Fractional Brand Leadership",
+                desc: "Stepping in as an experienced senior operator to guide brand and commercial teams through transitions, launches, or portfolio pivots."
+            }
+        ];
+
+        function selectService(idx) {
+            const pills = document.querySelectorAll('#servicePills .service-pill');
+            pills.forEach((p, i) => p.classList.toggle('active', i === idx));
+            const s = SERVICES_DATA[idx];
+            document.getElementById('serviceDetailText').innerHTML = `<strong>${s.title}:</strong> ${s.desc}`;
+        }
+
+        // Interactive Diagnostic Scenarios
+        const SCENARIOS = [
+            {
+                cat: "Diagnostic 01 • Value & Price Architecture",
+                title: "Shifting from “What You Pay” to “What You Get”",
+                context: "Nobody wakes up thinking about “price architecture.” They just want to feel like what they bought was worth it—and worth it doesn’t necessarily mean the cheapest thing on the menu or shelf.",
+                brandLens: "How do we elevate perceived quality, occasion fit, emotional satisfaction, and brand equity so value feels generous rather than discounted?",
+                buyerLens: "How do pack-price architecture, promotional guardrails, and penny profit work for both the brand P&L and the retailer’s category margin?",
+                unlock: "Reframe the value equation around “What makes this feel worth it?”—aligning product experience, pack/tier architecture, and messaging to protect margin while driving traffic and velocity.",
+                format: "Recommended Format: 4–6 Week Value & Portfolio Sprint",
+                focusSelect: "Innovation & Growth"
+            },
+            {
+                cat: "Diagnostic 02 • Heritage SKU Renovation",
+                title: "Modernizing an Icon With a Challenger Mindset",
+                context: "Keeping what made a flagship product iconic while moving it forward takes more than a recipe tweak. Move too timidly and you miss new shoppers; move carelessly and you alienate core loyalists.",
+                brandLens: "What are the sacred brand equities people already love, and what ingredient, functional, or packaging upgrades will earn cultural relevance today?",
+                buyerLens: "How do we prove to Club (Costco) and retail buyers that a renovated icon will drive incremental category velocity and clean shelf transition?",
+                unlock: "Pair a challenger mindset with disciplined strategy-to-shelf execution—upgrading formulation and visual impact while fiercely protecting the signature cues shoppers trust.",
+                format: "Recommended Format: Strategy-to-Shelf Renovation Advisory",
+                focusSelect: "Innovation & Growth"
+            },
+            {
+                cat: "Diagnostic 03 • Cultural Trend Translation",
+                title: "Looking Underneath the Trend List to Find the Consumer Signal",
+                context: "Trend reports are full of surface ideas (Japanese comfort food, bitter flavors, Dubai chocolate), but chasing trends blindly creates short-lived SKU clutter.",
+                brandLens: "What is the stretched consumer actually asking for underneath the trend (more function with less complexity, novelty with comfort), and how can our brand make it unmistakably ours?",
+                buyerLens: "Does this concept earn a permanent or high-velocity seasonal slot on shelf, and can supply chain and sourcing deliver it profitably at scale?",
+                unlock: "Filter cultural inspiration through authentic brand DNA and commercial feasibility—creating innovation (like Love Crunch Dubai Granola) that feels completely natural for the brand.",
+                format: "Recommended Format: Innovation Pipeline & White-Space Sprint",
+                focusSelect: "Innovation & Growth"
+            },
+            {
+                cat: "Diagnostic 04 • Retailer & JBP Conviction",
+                title: "Building a Story the Buyer Side of the Table Will Champion",
+                context: "Brand teams often build launch decks around internal excitement rather than the metrics a category buyer or merchandiser is measured on.",
+                brandLens: "How does our brand bring differentiated shoppers, cultural excitement, and verifiable Retail Media (RMN) efficiency to the category?",
+                buyerLens: "Why does this item deserve shelf space over private label or a competitor? How does it grow total category dollars, margin, and turns?",
+                unlock: "Bring a former retail buyer and merchandiser into your prep room—translating brand positioning into a bulletproof customer strategy and JBP narrative.",
+                format: "Recommended Format: Customer Strategy & Go-To-Market Sprint",
+                focusSelect: "Brand & Go-To-Market"
+            },
+            {
+                cat: "Diagnostic 05 • Insights to Action",
+                title: "Turning Noisy Data Into Clear Tradeoffs and Direction",
+                context: "Many teams aren’t short on data—they’re drowning in syndicated reports, tracker studies, and conflicting stakeholder opinions without a clear path forward.",
+                brandLens: "Beneath the noise, what is the core consumer problem and what truly drives choice in this category?",
+                buyerLens: "Which option has the highest probability of commercial success given our budget, channel footprint, and operational reality?",
+                unlock: "Synthesize consumer, customer, and P&L inputs into a clear decision framework—helping leaders weigh the real tradeoffs and commit to a winning direction.",
+                format: "Recommended Format: Insights-to-Action Executive Sprint",
+                focusSelect: "Insights to Action"
+            }
+        ];
+
+        let currentScenarioIdx = 0;
+
+        function selectScenario(idx) {
+            currentScenarioIdx = idx;
+            const btns = document.querySelectorAll('#scenarioButtons .scenario-btn');
+            btns.forEach((b, i) => b.classList.toggle('active', i === idx));
+            const s = SCENARIOS[idx];
+            document.getElementById('diagCategory').textContent = s.cat;
+            document.getElementById('diagTitle').textContent = s.title;
+            document.getElementById('diagContext').textContent = s.context;
+            document.getElementById('diagBrandLens').textContent = s.brandLens;
+            document.getElementById('diagBuyerLens').textContent = s.buyerLens;
+            document.getElementById('diagUnlock').textContent = s.unlock;
+            document.getElementById('diagFormat').textContent = s.format;
+        }
+
+        function prefillTopic() {
+            const s = SCENARIOS[currentScenarioIdx];
+            const selectEl = document.getElementById('inqFocus');
+            if (selectEl) {
+                selectEl.value = s.focusSelect;
+            }
+            const msgEl = document.getElementById('inqMessage');
+            if (msgEl && !msgEl.value.trim()) {
+                msgEl.value = `We'd love to discuss "${s.title}" and explore how Franca Advisory can help us find the unlock.`;
+            }
+        }
+
+        // Full Field Notes Modal Data (Authentic LinkedIn Posts)
+        const NOTES_DATA = [
+            {
+                meta: "Value Strategy • October 2026",
+                title: "Working on Value at McDonald’s Taught Me Something About “Worth It”",
+                body: `Working on Value at McDonald’s taught me something I probably should have known already.\n\nNobody wakes up thinking about “price architecture.” They just want to feel like what they bought was worth it.\n\nAnd worth it doesn’t necessarily mean the cheapest thing.\n\nAt the time, we were evolving how McDonald’s thought about Value, from a conversation mostly about WHAT YOU PAY to a much bigger one about WHAT YOU GET.\n\nWallets were tight and prices were moving fast. So yeah, price mattered a lot.\n\nBut the more interesting question was always “What makes this feel worth it?”\n\nThat question has stuck with me. Especially now, when everything just seems to cost more.`,
+                url: "https://www.linkedin.com/posts/flencioni_working-on-value-at-mcdonalds-taught-me-activity-7518321651588022272-KwZM"
+            },
+            {
+                meta: "Consumer Insights & Trends • October 2026",
+                title: "Looking Underneath the 2027 Trend List",
+                body: `I’m a sucker for a good trend report. And Whole Foods’ 2027 list has some fun ones:\n\nJapanese comfort food, beauty from within, terroir, bitter flavors, beans having another moment.\n\nBut the list is only the surface.\n\nWhat I usually find more interesting is what those trends say about what people want right now.\n\nPeople are stretched. Not just financially, but for time and attention too. There’s a LOT competing to break through the noise.\n\nSo food is being asked to do more than ever.\n\n→ More function, but less complexity.\n→ More novelty, but still something familiar.\n→ More discovery, but without giving up comfort.\n\nMaybe the real signal is people want things that work harder for them, but also bring a little ease, joy or escape.\n\nThe question isn’t “Should we do Japanese comfort food?”\n\nIt’s “What is the consumer really asking for here, and how can our brand make it unmistakably ours?”`,
+                url: "https://www.linkedin.com/posts/flencioni_im-a-sucker-for-a-good-trend-report-and-activity-7516485138718064640-3SJt"
+            },
+            {
+                meta: "Both Sides of the Table • October 2026",
+                title: "Why I’m Glad I Didn’t Pick a Single Clean Lane",
+                body: `I’ve never been very good at staying in one lane.\n\nI started in private label and global sourcing. Then buying and merchandising. At one point I was literally buying Christmas and toys (which made me a very popular aunt for a few years).\n\nFrom there, I moved deeper into brand, innovation, pricing and customer strategy, and eventually into owning the business outcome, not just the marketing piece.\n\nWhich, admittedly, is a bit all over the place.\n\nBut I was always curious about how the rest of the business worked.\n\nNot just what people wanted. What would actually sell. What the retailer would get behind. Whether the business would make money. Whether we could realistically pull it off.\n\nFor a long time, I wondered if I should have picked a cleaner lane.\n\nNow I’m really glad I didn’t.\n\nI didn’t plan the breadth. I just kept expanding the view.`,
+                url: "https://www.linkedin.com/posts/flencioni_ive-never-been-very-good-at-staying-in-one-activity-7515851304888385536-BqHu"
+            },
+            {
+                meta: "Brand Renovation & Club Channel • July 2026",
+                title: "Modernizing an Icon Is Harder Than It Looks",
+                body: `Modernizing an icon is harder than it looks.\n\nNature's Path Foods Pumpkin Seed + Flax granola renovation recently landed at Costco:\n…now made with coconut oil.\n…with a refreshed package design.\n…and already named one of August’s Best New Costco Finds (and named by Martha Stewart as one of the best grab-and-go breakfasts at Costco)!\n\nKeeping what made a product iconic while moving it forward takes more than a recipe change. It means anticipating evolving consumer preferences, protecting what people already love, and making thoughtful improvements that set the brand up for long-term growth.\n\nThis is a great example of what happens when an established brand has a challenger mindset. Listening closely to consumers, evolving with purpose, and never losing sight of what made the product iconic in the first place.\n\nProud to have helped shape this one from leading strategy to shelf alongside an incredible cross-functional team.`,
+                url: "https://www.linkedin.com/posts/flencioni_14-of-the-best-items-new-to-costco-to-try-activity-7488969309109506048-MbXi"
+            }
+        ];
+
+        function openNoteModal(idx) {
+            const n = NOTES_DATA[idx];
+            document.getElementById('modalMeta').textContent = n.meta;
+            document.getElementById('modalTitle').textContent = n.title;
+            document.getElementById('modalBody').textContent = n.body;
+            document.getElementById('modalLink').href = n.url;
+            document.getElementById('noteModal').classList.add('open');
+        }
+
+        function closeNoteModal() {
+            document.getElementById('noteModal').classList.remove('open');
+        }
+
+        // Submit Contact Form to Backend API (/api/contact/)
+        async function submitFrancaInquiry(e) {
+            e.preventDefault();
+            const btn = document.getElementById('inqSubmitBtn');
+            const status = document.getElementById('inqStatus');
+            const name = document.getElementById('inqName').value.trim();
+            const email = document.getElementById('inqEmail').value.trim();
+            const company = document.getElementById('inqCompany').value.trim();
+            const focus = document.getElementById('inqFocus').value;
+            const rawMsg = document.getElementById('inqMessage').value.trim();
+
+            btn.disabled = true;
+            btn.textContent = 'Sending Inquiry...';
+            status.className = 'form-status';
+            status.style.display = 'none';
+
+            const composedMessage = `[Franca Advisory Inquiry | Focus: ${focus}${company ? ' | Company: ' + company : ''}]\n\n${rawMsg}`;
+
+            try {
+                const res = await fetch('/api/contact/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: composedMessage
+                    })
+                });
+
+                if (res.ok) {
+                    status.textContent = 'Thank you! Your inquiry has been received for Franca Advisory. We look forward to connecting soon.';
+                    status.className = 'form-status success';
+                    document.getElementById('francaContactForm').reset();
+                } else {
+                    throw new Error('Server returned status ' + res.status);
+                }
+            } catch (err) {
+                status.textContent = 'Unable to submit right now. Please reach out directly to Franci Lencioni on LinkedIn (linkedin.com/in/flencioni).';
+                status.className = 'form-status error';
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Inquiry to Franca Advisory';
+            }
+        }
+    </script>
+</body>
+</html>

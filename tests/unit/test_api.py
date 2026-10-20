@@ -58,6 +58,16 @@ async def test_serve_frontend():
     assert "<title>Tim O'Hagan" in response.text
 
 @pytest.mark.asyncio
+async def test_serve_franca_advisory_demo():
+    """Verify the Franca Advisory demo website (/fa_demo) is served with 200 OK."""
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        response = await ac.get("/fa_demo")
+    assert response.status_code == 200
+    assert "text/html" in response.headers.get("content-type", "")
+    assert "Franca Advisory" in response.text
+    assert "Franci Lencioni" in response.text
+
+@pytest.mark.asyncio
 async def test_contact_inbox_requires_auth():
     """Verify that retrieving contact messages without authentication returns 401."""
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
