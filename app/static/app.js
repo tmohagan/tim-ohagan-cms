@@ -277,11 +277,12 @@ function getCategoryMeta(categoryNameOrSlug) {
 function getPostTags(title, content) {
     const text = (title + " " + content).toLowerCase();
     const tags = [];
-    if (text.includes("ast") || text.includes("guardrail") || text.includes("security")) tags.push("AST Security");
-    if (text.includes("langgraph") || text.includes("state machine")) tags.push("LangGraph");
+    if (text.includes("forward deployment") || text.includes("enterprise") || text.includes("client") || text.includes("productionizing")) tags.push("Forward Deployment");
+    if (text.includes("ast") || text.includes("guardrail") || text.includes("security") || text.includes("zero-trust")) tags.push("AST Security");
+    if (text.includes("langgraph") || text.includes("state machine") || text.includes("mcp")) tags.push("Agentic AI");
     if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("savings")) tags.push("SRE Economics");
-    if (text.includes("sandbox") || text.includes("docker") || text.includes("pytest")) tags.push("Sandboxing");
-    if (text.includes("webhook") || text.includes("telemetry") || text.includes("opentelemetry")) tags.push("Telemetry");
+    if (text.includes("sandbox") || text.includes("docker") || text.includes("gvisor") || text.includes("chaos")) tags.push("Sandboxing");
+    if (text.includes("webhook") || text.includes("telemetry") || text.includes("opentelemetry") || text.includes("trace")) tags.push("Telemetry");
     if (text.includes("ghostmachine") && tags.length < 3) tags.push("Autonomous SRE");
     if (tags.length === 0) tags.push("Engineering");
     return tags.slice(0, 3);
