@@ -59,13 +59,14 @@ async def test_serve_frontend():
 
 @pytest.mark.asyncio
 async def test_serve_franca_advisory_demo():
-    """Verify the Franca Advisory demo website (/fa_demo) is served with 200 OK."""
+    """Verify the Franca Advisory demo website (/fa_demo and sub-pages) is served with 200 OK."""
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        response = await ac.get("/fa_demo")
-    assert response.status_code == 200
-    assert "text/html" in response.headers.get("content-type", "")
-    assert "Franca Advisory" in response.text
-    assert "Franci Lencioni" in response.text
+        for path in ["/fa_demo", "/fa_demo/about", "/fa_demo/services", "/fa_demo/unlock", "/fa_demo/work", "/fa_demo/contact"]:
+            response = await ac.get(path)
+            assert response.status_code == 200
+            assert "text/html" in response.headers.get("content-type", "")
+            assert "Franca Advisory" in response.text
+            assert "Franci Lencioni" in response.text
 
 @pytest.mark.asyncio
 async def test_contact_inbox_requires_auth():

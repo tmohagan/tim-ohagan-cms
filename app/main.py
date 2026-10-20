@@ -53,8 +53,9 @@ async def serve_frontend():
 
 @app.get("/fa_demo", tags=["Frontend"])
 @app.get("/fa_demo/", tags=["Frontend"], include_in_schema=False)
-async def serve_franca_advisory_demo():
-    """Serve the Franca Advisory website demo."""
+@app.get("/fa_demo/{page_slug}", tags=["Frontend"], include_in_schema=False)
+async def serve_franca_advisory_demo(page_slug: str | None = None):
+    """Serve the Franca Advisory multi-page website demo."""
     return FileResponse("app/static/fa_demo/index.html")
 
 @app.get("/admin", tags=["Frontend"])
