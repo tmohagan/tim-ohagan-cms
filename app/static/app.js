@@ -277,12 +277,13 @@ function getCategoryMeta(categoryNameOrSlug) {
 function getPostTags(title, content) {
     const text = (title + " " + content).toLowerCase();
     const tags = [];
-    if (text.includes("forward deployment") || text.includes("enterprise") || text.includes("client") || text.includes("productionizing")) tags.push("Forward Deployment");
+    if (text.includes("franca advisory") || text.includes("lencioni")) tags.push("Franca Advisory");
+    if (text.includes("forward deployment") || text.includes("fde")) tags.push("Forward Deployment");
+    if (text.includes("cpg") || text.includes("qsr") || text.includes("brand") || text.includes("growth")) tags.push("Brand & Growth AI");
     if (text.includes("ast") || text.includes("guardrail") || text.includes("security") || text.includes("zero-trust")) tags.push("AST Security");
     if (text.includes("langgraph") || text.includes("state machine") || text.includes("mcp")) tags.push("Agentic AI");
-    if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("savings")) tags.push("SRE Economics");
+    if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("warc") || text.includes("effie")) tags.push("Advisory ROI");
     if (text.includes("sandbox") || text.includes("docker") || text.includes("gvisor") || text.includes("chaos")) tags.push("Sandboxing");
-    if (text.includes("webhook") || text.includes("telemetry") || text.includes("opentelemetry") || text.includes("trace")) tags.push("Telemetry");
     if (text.includes("ghostmachine") && tags.length < 3) tags.push("Autonomous SRE");
     if (tags.length === 0) tags.push("Engineering");
     return tags.slice(0, 3);

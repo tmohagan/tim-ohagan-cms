@@ -6,127 +6,105 @@ from sqlalchemy import delete
 
 POSTS_DATA = [
     {
-        "title": "The Rise of the Forward Deployment Engineer in the Agentic AI Era",
+        "title": "Why Brand & Growth Advisories Need a Forward Deployment Engineer: A Blueprint for The Franca Advisory",
         "category": "Autonomous SRE",
-        "content": """The rapid progression of frontier foundation models has fundamentally shifted the bottleneck in enterprise AI from model capabilities to field execution. While research labs release increasingly capable reasoning models, enterprise clients struggle with the "last mile" problem: embedding autonomous agentic workflows into legacy infrastructures, secure VPCs, and mission-critical operational loops.
+        "content": """Franci Lencioni founded **The Franca Advisory** on a rare executive perspective: seeing the consumer business from more than one side of the table—spanning high-growth CPG brand management at Nature's Path to Effie-, WARC Effective 100-, and Fast Company-winning marketing innovation at McDonald's USA.
 
-Enter the **Forward Deployment Engineer (FDE)** for AI Agents.
+In today's consumer landscape, however, there is a critical third side of the table: **autonomous technical execution**.
 
-Borrowing from the field-engineering ethos pioneered in mission-driven tech, the Agentic FDE operates directly at the fault line between cutting-edge autonomous agents and customer realities:
-1. **Context Extraction & Schema Mapping**: Transforming unstructured client data and legacy database schemas into high-fidelity context windows and Model Context Protocol (MCP) tool endpoints.
-2. **Autonomous SRE & Self-Healing Integration**: Deploying supervisory agents (such as GhostMachine) into client cloud environments to monitor live microservices, catch unhandled exceptions, and synthesize pull requests within seconds.
-3. **Guardrails Over Blind Faith**: Replacing fragile prompt engineering with compiler-enforced Abstract Syntax Tree (AST) validation and gVisor sandboxing to satisfy stringent enterprise InfoSec and compliance requirements.
+Traditional brand and marketing consultancies deliver brilliant strategy decks—identifying consumer white space, brand positioning, and commercial operating models—only to watch execution stall for months in client IT queues. By embedding a **Forward Deployment Engineer (FDE)** directly into The Franca Advisory's engagements, strategic vision becomes deployed reality within days:
 
-Rather than selling canned APIs, the modern FDE ships resilient, production-hardened agent architectures that drive quantifiable business impact on Day 1."""
+1. **From Brand Strategy to Live Agent Workflows**: Translating Franca Advisory's growth marketing and content strategies into custom, production-grade LangGraph agent pipelines deployed directly inside client cloud environments.
+2. **Proof Over Positioning**: Modern shoppers and enterprise CMOs alike expect empirical proof, not just positioning. Pairing strategic advisory with live engineering prototypes and automated ROI ledgers gives Franca Advisory an unassailable competitive moat.
+3. **Self-Healing Client Infrastructure (`GhostMachine.dev`)**: Guaranteeing that the digital storefronts, promotional microsites, and data pipelines powering client brand activations remain 100% resilient under peak traffic."""
     },
     {
-        "title": "Productionizing AI Agents: Bridging Frontier Models to Mission-Critical Enterprise Stacks",
+        "title": "Winning the Agentic Shelf: Forward-Deploying AI Discovery Systems for CPG & Consumer Brands",
         "category": "Agentic Architecture",
-        "content": """Deploying a demonstration agent in a notebook is trivial; keeping an autonomous multi-agent swarm stable inside an enterprise Kubernetes cluster is an engineering discipline in its infancy.
+        "content": """CPG and retail marketing are undergoing a structural reckoning: private-label brands are scaling rapidly, consumer nutritional preferences are shifting toward clean-label transparency, and **AI agents are disrupting how shoppers discover, compare, and purchase products**.
 
-When forward deploying AI agents into client environments, three architectural pillars separate toy scripts from production systems:
+When consumers ask AI assistants to build their grocery baskets or recommend functional food and beverage brands, traditional SEO and shelf placement are no longer enough. For **The Franca Advisory's** CPG and retail clients, I forward-deploy the technical infrastructure required to win the **Agentic Shelf**:
 
-1. **Stateful Graph Orchestration (LangGraph)**:
-Unstructured ReAct loops inevitably get stuck in recursive spirals. By modeling client workflows as cyclic directed graphs with typed state (`IncidentState`), deterministic state reducers, and hard recursion bounds (e.g. maximum 3 retries), the agent behaves with deterministic predictability.
+1. **Model Context Protocol (MCP) Brand Endpoints**:
+We expose structured, machine-verified product attributes—clean-label ingredients, protein-to-fiber ratios, sustainability proofs, and real-time retail availability—directly to AI shopping agents via standardized MCP servers.
 
-2. **Standardized Tool Interoperability (MCP)**:
-Instead of bespoke API wrappers that decay with client updates, we leverage standardized tool calling schemas via the Model Context Protocol (MCP). Agents discover client tools dynamically, validate arguments against strict Pydantic models, and execute remote procedures through secure reverse proxies.
+2. **Autonomous White-Space & Trend Radar**:
+Using stateful LangGraph pipelines, we continuously synthesize syndicated retail velocity signals, consumer sentiment, and emerging category shifts into actionable white-space briefs for Franca Advisory's strategy leads.
 
-3. **Human-in-the-Loop (HITL) Checkpointing**:
-High-stakes operations (modifying database records, provisioning cloud infrastructure, merging code into production) must support asynchronous pause-and-resume. By persisting graph state in PostgreSQL checkpointers (`PostgresSaver`), field engineers can inject human sign-offs before destructive actions execute.
-
-This deterministic foundation is what allows enterprises to entrust autonomous agents with critical business workflows."""
+3. **Dynamic Omnichannel Content Engines**:
+Multi-agent workflows that adapt core brand equity and campaign messaging across retail media networks, shopper marketing touchpoints, and conversational commerce interfaces without diluting brand voice."""
     },
     {
-        "title": "Autonomous Incident Remediation as an Enterprise Service: Deploying SRE Agents in Client VPCs",
+        "title": "Protecting High-Stakes Brand Activations with GhostMachine.dev: Zero-Downtime SRE for Viral Campaigns",
         "category": "Autonomous SRE",
-        "content": """When client enterprise services experience unhandled crashes during off-peak hours, the traditional escalation path is brutally inefficient: an on-call engineer is paged, context-switches, digs through distributed logs, clones the repository, attempts to reproduce the fault, writes a patch, and waits for CI/CD—resulting in an average MTTR of 45 to 60 minutes.
+        "content": """Iconic consumer campaigns—like the Gold Effie and Ad Age Marketer of the Year activations Franci Lencioni helped spearhead at McDonald's—generate massive, sudden surges in digital traffic. When a youth marketing drop, loyalty app partnership, or national QSR promotion goes viral, a single unhandled `500` error or database deadlock burns millions in media spend and erodes hard-won brand equity.
 
-Through forward deployed SRE agents, we transform this operational drag into a deterministic, automated loop:
+I built **GhostMachine.dev** to serve as an autonomous Site Reliability Engineering (SRE) shield for mission-critical digital experiences:
 
-• **Zero Data Egress**: The telemetry middleware (`GhostMachineMiddleware`) captures in-memory stack frames, scrubs sensitive client authorization headers, and fires signed webhooks strictly within the client's private network or encrypted ingress.
-• **Instant Test Synthesis**: An isolated reproduction subagent parses the stack frame and drafts a standalone pytest script reproducing the exact crash vector.
-• **Ephemeral Sandbox Verification**: Running inside a gVisor-isolated container, the test verifies the bug (`exit_code != 0`), synthesizes an AST-verified patch, and confirms regression pass (`exit_code == 0`).
-• **Economics of Automation**: Slashing MTTR from 45 minutes to 52 seconds reduces tier-1 incident handling cost from ~$42.50 in human engineering labor to $0.0263 in inference and sandbox compute—yielding a 99.94% reduction in operational spend."""
+• **Real-Time Fault Interception**: `GhostMachineMiddleware` monitors client web apps and APIs at the network boundary, capturing unhandled exceptions and OpenTelemetry trace context (`x-b3-traceid`) the millisecond a campaign spike triggers a fault.
+• **52-Second Autonomous Remediation**: Instead of waiting 45+ minutes for an on-call contractor to wake up and debug logs while paid media traffic bounces, GhostMachine synthesizes a `pytest` reproduction test, verifies the fix in a sandbox, and opens a verified GitHub Pull Request in **~52 seconds**.
+• **99.94% Incident Cost Reduction**: Reduces tier-1 campaign incident resolution from ~$42.50 in manual engineering labor to **$0.0263** in Gemini Flash inference and sandbox compute—protecting both campaign conversion rates and client margins."""
     },
     {
-        "title": "Field-Testing Agent Reliability: Synthetic Chaos Engineering in Customer Sandboxes",
-        "category": "Chaos Engineering",
-        "content": """How do forward deployment engineers prove to client CTOs and risk committees that an autonomous agent will not hallucinate catastrophic failures during a production outage?
-
-You test it in battle before going live.
-
-In our customer deployment playbook, we embed a dedicated **Chaos Playground** into the staging environment:
-1. **CPU & Unhandled Exception Injection (`/fault/cpu-500`)**: Forces divide-by-zero crashes to confirm the telemetry capture layer intercepts the error and dispatches signed webhooks in real time.
-2. **Schema Validation Drifts (`/fault/schema-422`)**: Simulates breaking API payload changes to ensure the agent synthesizes robust fallback models rather than failing silently.
-3. **Database Deadlocks & Contention (`/fault/db-deadlock`)**: Simulates concurrent asyncpg row lock timeouts, validating that the agent diagnoses database connection pool exhaustion and applies exponential backoff logic.
-4. **Memory Spikes & Asset Exhaustion (`/fault/memory-asset`)**: Injects buffer allocation limits to test how the agent refactors synchronous read operations into streamed backpressure pipelines.
-
-By validating agentic repair pipelines against synthetic chaos vectors, client engineering teams develop the confidence needed to grant agents production autonomy."""
-    },
-    {
-        "title": "Enterprise Guardrails & AST Compilation: Delivering Zero-Trust Agent Code into Production",
+        "title": "Brand Safety by Compiler, Not Prompt: Zero-Trust AST Guardrails for Enterprise Marketing AI",
         "category": "AI Security & Guardrails",
-        "content": """Enterprise InfoSec teams are rightly skeptical when told an LLM will automatically generate code and open pull requests against production repositories. Natural language system prompts ("Please write safe code and never remove auth checks") provide zero security guarantees against adversarial inputs or model hallucinations.
+        "content": """When advising heritage consumer brands and scaling CPG leaders, brand equity and consumer trust are sacred. CMOs and enterprise InfoSec teams rightly hesitate to deploy generative AI agents if those systems rely solely on fragile prompt instructions ("Please stay on brand and do not leak customer data").
 
-To achieve enterprise acceptance, Forward Deployment Engineers enforce **compiler-enforced, zero-trust AST guardrails**:
+As a Forward Deployment Engineer for **The Franca Advisory**, I replace prompt-level wishful thinking with **deterministic, compiler-level guardrails**:
 
-1. **AST Parsing Before Disk Writes**:
-Every unified diff generated by the patch agent is parsed in memory using Python's native `ast` compiler before any filesystem mutation occurs.
+1. **Abstract Syntax Tree (AST) Static Verification**:
+In `GhostMachine.dev`, every line of AI-synthesized code is parsed through Python's native `ast` compiler via a custom `SecurityAuditVisitor`. Dangerous primitives (`os.system`, `subprocess`, `eval`) and silent failure patterns (bare `except:` blocks) are mathematically rejected before execution.
 
-2. **Prohibited Primitive Blacklisting**:
-A custom `SecurityAuditVisitor` inspects every syntactic node. Calls to `os.system`, `subprocess`, `exec`, or `eval` trigger immediate aborts.
+2. **Boundary PII & Credential Redaction**:
+Consumer marketing stacks handle sensitive first-party loyalty and CRM data. Our telemetry middleware automatically scrubs `Authorization`, `Cookie`, and API key headers at the ingress boundary before any payload reaches an LLM context window.
 
-3. **Bare Exception Elimination**:
-One of the most dangerous LLM coding patterns is catching all exceptions (`except: pass`), which masks root failures and corrupts downstream state. Our AST guardrail immediately rejects any `ExceptHandler` with `handler.type is None`.
-
-4. **Diff Scope Enforcement**:
-Candidate diffs are hard-capped at 80 lines. This forces the agent to deliver surgical, reviewable fixes rather than attempting wide, unverified refactors.
-
-When security policies are mathematical compiler invariants rather than prompt suggestions, enterprise security teams enthusiastically greenlight agent deployments."""
+3. **Surgical Scope Constraints**:
+Automated patches and workflow mutations are hard-capped and gated behind deterministic validation, ensuring AI agents act as disciplined force multipliers that never compromise brand safety or regulatory compliance."""
     },
     {
-        "title": "The FDE Playbook: Evaluation Harnesses, Drift Detection, and Day-2 Operations for Agents",
+        "title": "Stress-Testing Campaign Launches: Synthetic Chaos Engineering Before the Media Drop",
+        "category": "Chaos Engineering",
+        "content": """In consumer brand consulting, the difference between a breakthrough product launch and a digital misfire comes down to operational readiness. Before a client of **The Franca Advisory** commits millions to a national media buy, retail media push, or high-profile brand partnership, their digital commerce and fulfillment stack must be battle-tested.
+
+Using the **Chaos Playground** architecture built into this portfolio and `GhostMachine.dev`, I bring proactive **Synthetic Chaos Engineering** to client launches:
+
+1. **Traffic Spike & CPU Fault Simulation (`/fault/cpu-500`)**: Validates that unhandled runtime exceptions under promotional load are immediately intercepted and routed to autonomous remediation.
+2. **Martech & Payload Schema Drift (`/fault/schema-422`)**: Simulates breaking API changes across CRM, CDP, and checkout webhooks so agents can synthesize resilient Pydantic fallback schemas ahead of launch.
+3. **High-Concurrency Checkout Deadlocks (`/fault/db-deadlock`)**: Simulates database row-lock contention during flash sales or limited-edition drops, verifying connection-pool backoff and recovery.
+4. **Media Asset & Memory Exhaustion (`/fault/memory-asset`)**: Tests high-resolution creative and video streaming backpressure so campaign landing pages stay fast and responsive on every device."""
+    },
+    {
+        "title": "From Consumer Insight to Execution: Multi-Agent LangGraph Pipelines for Content & Growth Strategy",
         "category": "Agentic Architecture",
-        "content": """Getting an agent to complete a workflow on Day 1 is only 20% of the forward deployment engagement. Day-2 operations—maintaining accuracy as customer APIs drift, schemas change, and edge cases accumulate—dictates whether an agent system survives in the enterprise.
+        "content": """**The Franca Advisory** operates across Brand Marketing, Content Strategy, Growth Marketing, and Business Consulting. A major opportunity for modern advisory practices is turning labor-intensive research and content adaptation cycles into repeatable, high-margin software assets.
 
-The modern FDE operates with a rigorous Day-2 evaluation playbook:
+Using **LangGraph** stateful orchestration, I architect multi-agent systems tailored to advisory workflows:
 
-• **Ground-Truth Eval Harnesses**: We build offline benchmark suites reflecting historical client failure cases and domain-specific edge scenarios. Every prompt update or model migration runs through headless evaluation matrices before deployment.
-• **Drift & Semantic Hallucination Monitoring**: Real-time telemetry tracks tool-calling accuracy, schema validation rejection rates, and context retrieval relevance scores.
-• **Economic Telemetry Ledger**: Client executives require clear proof of value. We embed automated telemetry tracking token consumption, model inference costs, and container execution times, dynamically comparing operational costs against human engineering baselines.
-• **Time-Travel Incident Replays**: With state durably persisted in PostgreSQL checkpointers, client teams can inspect exact intermediate states, token inputs, and agent reasoning traces at every step of historical executions."""
+• **Specialized Subagent Handshakes**: Rather than a single monolithic prompt that suffers from context drift, we partition workflows across specialized agents—a *Consumer Insight Analyst* (parsing category and shopper trends), a *Brand Strategy Architect* (filtering opportunities through brand equity and stretch), and a *Content Execution Agent* (generating channel-ready creative briefs).
+• **Human-in-the-Loop (HITL) Executive Checkpoints**: Powered by durable PostgreSQL state persistence (`PostgresSaver`), agent workflows automatically pause at critical decision nodes—allowing Franci and client stakeholders to review, steer, and approve strategic outputs before downstream execution proceeds.
+• **Repeatable Advisory IP**: Every forward-deployed workflow becomes reusable, proprietary technical leverage that scales The Franca Advisory's impact across engagements."""
     },
     {
-        "title": "Hardening gVisor Container Sandboxes for Client-Side Code Synthesis",
+        "title": "Hermetic gVisor Sandboxes: Running Proprietary Brand & Commercial Analytics with Zero Data Leakage",
         "category": "Chaos Engineering",
-        "content": """When deploying agents that write and execute tests autonomously on client infrastructure, standard container isolation (e.g. Docker runc) is insufficient. Standard Docker containers share the host Linux kernel; a malicious or hallucinated command inside a generated test could theoretically trigger kernel privilege escalations.
+        "content": """Advisory firms working across the food, beverage, CPG, and QSR ecosystems handle highly confidential commercial data: unannounced product innovación pipelines, pricing elasticity models, and retail distribution agreements. Running AI agents or automated code synthesis across multi-tenant client environments requires absolute isolation.
 
-To deliver zero-trust isolation on client hardware, we architect the execution sandbox using Google's **gVisor (`runsc`)**:
+In `GhostMachine.dev`, I engineered our execution environment around Google's **gVisor (`runsc`)** user-space kernel to guarantee enterprise-grade tenant isolation:
 
-1. **User-Space Kernel Interception**:
-gVisor implements an independent user-space Linux kernel written in Go. System calls originating from AI-generated pytest scripts are intercepted by `runsc` rather than directly hitting the host OS kernel.
-
-2. **Resource Throttling**:
-Containers are bounded with strict resource ceilings (`mem_limit="2048m"`, `nano_cpus=2000000000`, network-isolated bridge interfaces) to prevent rogue recursive processes or memory exhaustion.
-
-3. **Safe Directory Git Mounting**:
-To allow safe diff application without file permission corruption across Docker volume boundaries, staging nodes automatically configure `git config --global --add safe.directory <repo_path>` inside the isolated context.
-
-This dual-layer isolation (Docker + gVisor) provides enterprise security teams with the assurance that agent test execution remains strictly hermetic."""
+1. **Kernel-Level Syscall Interception**: Every AI-generated test or analytics script executes inside an ephemeral Docker container isolated by `runsc`, intercepting system calls in user space so untrusted code never touches the host kernel.
+2. **Strict Resource & Network Ceilings**: Sandboxes are locked to dedicated bridge networks and bounded by hard CPU (`2 vCPU`) and memory (`2048 MB`) limits, eliminating cross-client data bleed or runaway compute.
+3. **Ephemeral Lifecycle**: Containers are provisioned on demand for a single verification run and immediately destroyed (`remove=True`), giving The Franca Advisory's enterprise clients bank-grade confidence in how their proprietary data and code are handled."""
     },
     {
-        "title": "Client-Centric Telemetry: Designing OpenTelemetry Pipelines for Agent Observability",
+        "title": "Proving Effectiveness on the Balance Sheet: OpenTelemetry & Economic Ledgers for Advisory ROI",
         "category": "AI Security & Guardrails",
-        "content": """Observability is the lifeblood of forward deployment engineering. When an autonomous agent acts on behalf of enterprise users, developers and compliance officers must be able to trace every decision back to its root cause.
+        "content": """Throughout Franci Lencioni's career—highlighted by three consecutive #1 rankings on the **WARC Effective 100** and multiple **Gold Effie Awards**—the defining hallmark of her work has been *effectiveness*: creative, strategic work that measurably builds both the brand and the business.
 
-In our production deployments, we architect end-to-end OpenTelemetry (OTel) pipelines tailored for agentic interactions:
+When forward-deploying AI agents and autonomous infrastructure for **The Franca Advisory**, I build that same obsession with measurable effectiveness directly into the telemetry layer:
 
-• **Boundary PII & Secret Scrubbing**: The telemetry middleware automatically scrubs sensitive request headers (`Authorization`, `Cookie`, `X-Api-Key`, `X-GhostMachine-Secret`) at the network boundary before payloads are serialized or transmitted.
-• **Distributed Trace Correlation**: Incoming web requests carry `x-b3-traceid` identifiers that propagate through the entire remediation lifecycle—linking the initial customer HTTP fault to the LLM prompt, the Docker sandbox execution logs, and the resulting GitHub pull request.
-• **Constant-Time Cryptographic Verification**: Inter-service webhooks between client applications and the agent control plane are signed with high-entropy shared secrets and verified using constant-time string hashing (`secrets.compare_digest`), thwarting timing attacks.
-
-By prioritizing end-to-end observability and rigorous redaction, forward deployment engineers ensure enterprise AI remains auditable, compliant, and transparent."""
+• **Automated Economic Telemetry Ledgers**: Every autonomous workflow and GhostMachine pull request calculates its own unit economics in real time—tracking exact LLM token consumption, container compute seconds, cycle-time compression, and net dollar savings against manual baseline costs.
+• **End-to-End OpenTelemetry Attribution**: Distributed trace IDs connect technical execution metrics (uptime, latency, autonomous fault recovery) directly to commercial outcomes (campaign conversion continuity, shopper engagement, and speed-to-market).
+• **Boardroom-Ready Reporting**: Gives Franca Advisory and its client CMOs/CEOs transparent, auditable proof of how AI transformation translates into bottom-line growth."""
     }
 ]
 
@@ -136,10 +114,15 @@ async def seed():
         result = await session.execute(select(Profile).where(Profile.name == "Tim OHagan"))
         tim_profile = result.scalars().first()
         
+        bio_text = (
+            "Forward Deployment Engineer & creator of GhostMachine.dev—partnering with executive brand and growth "
+            "leaders like The Franca Advisory to turn consumer strategy into deployed, production-grade AI agent systems."
+        )
+
         if not tim_profile:
             tim_profile = Profile(
                 name="Tim OHagan",
-                bio="Forward Deployment Engineer deploying autonomous AI agent systems and self-healing cloud infrastructure into enterprise environments.",
+                bio=bio_text,
                 github_url="https://github.com/tmohagan"
             )
             session.add(tim_profile)
@@ -147,14 +130,14 @@ async def seed():
             await session.refresh(tim_profile)
             print(f"Created Profile: {tim_profile.name} (ID: {tim_profile.id})")
         else:
-            tim_profile.bio = "Forward Deployment Engineer deploying autonomous AI agent systems and self-healing cloud infrastructure into enterprise environments."
+            tim_profile.bio = bio_text
             await session.commit()
             print(f"Updated Profile: {tim_profile.name} (ID: {tim_profile.id})")
 
-        # Delete existing posts to replace with Forward Deployment posts
+        # Delete existing posts to replace with Franca Advisory & Forward Deployment posts
         await session.execute(delete(Post))
         await session.commit()
-        print("Deleted existing posts to replace with Forward Deployment posts.")
+        print("Deleted existing posts to replace with Franca Advisory & Forward Deployment posts.")
 
         # Insert new Posts
         for post_info in POSTS_DATA:
