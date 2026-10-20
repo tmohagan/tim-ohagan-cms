@@ -67,8 +67,8 @@ async def seed_production_db(
 ):
     """Seed or update all showcase technical posts in the database. Protected by admin authentication."""
     bio_text = (
-        "Forward Deployment Engineer & creator of GhostMachine.dev—partnering with executive brand and growth "
-        "leaders like The Franca Advisory to turn consumer strategy into deployed, production-grade AI agent systems."
+        "Forward Deployment & Agentic Engineer bridging executive brand, growth, and commercial strategy "
+        "with production-grade AI agent systems and self-healing cloud infrastructure. Creator of GhostMachine.dev."
     )
     result = await db.execute(select(Profile).where(Profile.name == "Tim OHagan"))
     tim_profile = result.scalars().first()
@@ -85,7 +85,7 @@ async def seed_production_db(
         tim_profile.bio = bio_text
         await db.commit()
 
-    # Clear existing posts to replace with Franca Advisory & Forward Deployment Engineering posts
+    # Clear existing posts to replace with Forward Deployment & Agentic Engineering posts
     await db.execute(delete(Post))
     await db.commit()
 
@@ -100,4 +100,4 @@ async def seed_production_db(
         db.add(new_post)
 
     await db.commit()
-    return {"status": "success", "message": "All Franca Advisory & Forward Deployment Engineering posts seeded successfully."}
+    return {"status": "success", "message": "All Forward Deployment & Agentic Engineering posts seeded successfully."}

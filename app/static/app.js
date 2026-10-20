@@ -277,12 +277,11 @@ function getCategoryMeta(categoryNameOrSlug) {
 function getPostTags(title, content) {
     const text = (title + " " + content).toLowerCase();
     const tags = [];
-    if (text.includes("franca advisory") || text.includes("lencioni")) tags.push("Franca Advisory");
-    if (text.includes("forward deployment") || text.includes("fde")) tags.push("Forward Deployment");
-    if (text.includes("cpg") || text.includes("qsr") || text.includes("brand") || text.includes("growth")) tags.push("Brand & Growth AI");
+    if (text.includes("forward deployment") || text.includes("fde") || text.includes("last-mile")) tags.push("Forward Deployment");
+    if (text.includes("cpg") || text.includes("brand") || text.includes("growth") || text.includes("consumer")) tags.push("Brand & Growth AI");
     if (text.includes("ast") || text.includes("guardrail") || text.includes("security") || text.includes("zero-trust")) tags.push("AST Security");
     if (text.includes("langgraph") || text.includes("state machine") || text.includes("mcp")) tags.push("Agentic AI");
-    if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("warc") || text.includes("effie")) tags.push("Advisory ROI");
+    if (text.includes("economics") || text.includes("mttr") || text.includes("roi") || text.includes("effectiveness")) tags.push("Client ROI");
     if (text.includes("sandbox") || text.includes("docker") || text.includes("gvisor") || text.includes("chaos")) tags.push("Sandboxing");
     if (text.includes("ghostmachine") && tags.length < 3) tags.push("Autonomous SRE");
     if (tags.length === 0) tags.push("Engineering");
